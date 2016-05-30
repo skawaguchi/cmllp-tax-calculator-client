@@ -1,16 +1,23 @@
 {
     "env": {
         "browser": true,
-        "es6": true,
-        "mocha": true,
-        "node": true
+        "node": true,
+        "es6": true
     },
     "extends": [
         "./eslint/es5.js",
         "./eslint/es2015.js",
-        "./eslint/node.js"
+        "./eslint/node.js",
+        "./eslint/react.js"
     ],
+    "parser": "babel-eslint",
     "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
         "sourceType": "module"
-    }
+    },
+    "plugins": [
+        "react"
+    ]
 }

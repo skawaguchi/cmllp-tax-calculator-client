@@ -8,9 +8,10 @@
   },
   "scripts": {
     "build": "rimraf ./build && webpack -p",
-    "eslint": "eslint './client/{spec/unit, src}/**/*.js'",
+    "eslint": "eslint './{spec/unit, src}/**/*.js'",
     "start": "babel-node ./server",
-    "test": "tape ./{spec/unit, src}/**/*.js",
+    "test": "babel-tape-runner ./spec/unit/**/*.spec.js faucet",
+    "pretest": "npm run eslint",
     "verify:client": "npm run eslint:client && npm run test:client"
   },
   "repository": {
@@ -38,7 +39,7 @@
     "chance": "^1.0.3",
     "css-loader": "^0.23.1",
     "enzyme": "^2.3.0",
-    "eslint": "^2.10.0",
+    "eslint": "^2.11.0",
     "eslint-plugin-react": "^5.1.1",
     "jsdom": "^9.0.0",
     "lost": "^6.7.2",
@@ -55,7 +56,6 @@
     "rimraf": "^2.5.2",
     "sinon": "^1.17.4",
     "style-loader": "^0.13.1",
-    "supertest": "^1.2.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.5.1",
     "tcomb": "^3.0.0",
@@ -69,7 +69,7 @@
     "react-dom": "^15.1.0",
     "react-intl": "^2.1.2",
     "react-redux": "^4.4.5",
-    "react-router": "^2.4.0",
+    "react-router": "^2.4.1",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0"
   },
