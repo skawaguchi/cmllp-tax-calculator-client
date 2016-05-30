@@ -1,0 +1,16 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "mocha": true,
+        "node": true
+    },
+    "extends": [
+        "./eslint/es5.js",
+        "./eslint/es2015.js",
+        "./eslint/node.js"
+    ],
+    "parserOptions": {
+        "sourceType": "module"
+    }
+}
