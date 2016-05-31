@@ -7,7 +7,6 @@ const server = new Hapi.Server();
 const port = process.env.port || 3000;
 
 server.connection({
-    host: 'localhost',
     port
 });
 
