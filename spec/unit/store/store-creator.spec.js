@@ -4,7 +4,7 @@ import * as redux from 'redux';
 // import thunk from 'redux-thunk';
 // import Chance from 'chance';
 
-import * as storeCreator from '../../src/store/store-creator';
+import * as storeCreator from '../../../src/store/store-creator';
 
 let sandbox;
 
