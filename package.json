@@ -7,9 +7,10 @@
         "node": "6.1.0"
     },
     "scripts": {
-        "build": "rimraf ./build && webpack -p",
+        "build": "rimraf ./public/cmllp-tax-calculator.* && webpack -p --config webpack.build.config.js",
+        "dev": "node ./dev-server",
         "eslint": "eslint './{spec/unit, src}/**/*.js'",
-        "start": "babel-node ./server",
+        "start": "node ./server",
         "test": "babel-tape-runner \"./spec/unit/**/*.spec.js\" | faucet",
         "verify": "npm run eslint && npm run test"
     },
@@ -59,6 +60,8 @@
     },
     "dependencies": {
         "babel-polyfill": "^6.9.1",
+        "hapi": "^13.4.1",
+        "inert": "^4.0.0",
         "react": "^15.1.0",
         "react-dom": "^15.1.0",
         "react-intl": "^2.1.2",

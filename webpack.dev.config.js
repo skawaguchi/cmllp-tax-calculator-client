@@ -23,15 +23,14 @@ module.exports = {
                 test: /\.js$/,
                 include: path.join(__dirname, 'src'),
                 loaders: ['react-hot', 'babel']
-            }
-            // ,
-            // {test: /\.css$/, loaders: ['style', 'css', 'postcss']},
+            },
+            {test: /\.css$/, loaders: ['style', 'css', 'postcss']},
         ]
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()
     ],
-    // postcss: [autoprefixer({browsers: ['last 2 versions']}), precss],
+    postcss: [autoprefixer({browsers: ['last 2 versions']}), precss],
     resolve: {
         extensions: ['', '.js']
     },

@@ -1,19 +1,30 @@
-const webpack = require('webpack');
-const WebPackDevServer = require('webpack-dev-server');
+const Hapi = require('hapi');
+const inert = require('inert');
+const path = require('path');
 
-const config = require('./webpack.config');
+const server = new Hapi.Server();
 
-const port = 3000;
+const port = process.env.port || 3000;
 
-new WebPackDevServer(webpack(config), {
-    publicPath: config.output.publicPath,
-    hot: true,
-    historyApiFallback: true
-})
-    .listen(port, 'localhost', (error, result) => {
-        if (error) {
-            console.log(error);
+server.connection({
+    host: 'localhost',
+    port
+});
+
+server.register(inert, () => {});
+
+server.route({
+    handler: {
+        directory: {
+            index: true,
+            listing: false,
+            path: './public'
         }
+    },
+    method: 'GET',
+    path: '/{path*}'
+});
 
-        console.log('Listening at http://localhost:' + port);
-    });
+server.start(() => {
+   console.log('Listening on', server.info.uri)
+});
