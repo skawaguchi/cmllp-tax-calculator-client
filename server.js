@@ -1,3 +1,5 @@
+const good = require('good');
+const goodFile = require('good-file');
 const Hapi = require('hapi');
 const inert = require('inert');
 const path = require('path');
@@ -54,6 +56,39 @@ server.route({
     path: '/{path*}'
 });
 
-server.start(() => {
-   console.log('Listening on', server.info.uri)
+server.register({
+    register: good,
+    options: {
+        ops: {
+            interval: 5000
+        },
+        reporters: {
+            console: [{
+                module: 'good-squeeze',
+                name: 'Squeeze',
+                args: [{ log: '*', response: '*' }]
+            }, {
+                module: 'good-console'
+            }, 'stdout'],
+            file: [{
+                module: 'good-squeeze',
+                name: 'Squeeze',
+                args: [{ ops: '*' }]
+            }, {
+                module: 'good-squeeze',
+                name: 'SafeJson'
+            }, {
+                module: 'good-file',
+                args: ['./test/fixtures/awesome_log']
+            }]
+        }
+    }
+}, (error) => {
+    if (error) {
+        console.error(error);
+    } else {
+        server.start(() => {
+            console.log('Listening on', server.info.uri)
+        });
+    }
 });
