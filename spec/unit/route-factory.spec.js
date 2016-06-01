@@ -3,9 +3,9 @@ import {match} from 'react-router';
 
 import {getRoutes} from '../../src/route-factory';
 
-import AppProvider from '../../src/AppProvider';
+import AppProvider from '../../src/views/AppProvider';
 
-test('# route-factory', (t) => {
+test('# Route Factory', (t) => {
 
     let matchedRouteProps;
 
@@ -18,16 +18,13 @@ test('# route-factory', (t) => {
         });
     }
 
-    t.test('getRoutes', (st) => {
+    const expectedRoutes = getRoutes();
+    const appIndex = 0;
 
-        const expectedRoutes = getRoutes();
-        const appIndex = 0;
+    setMatchedRouteProps(expectedRoutes, '/calculator');
 
-        setMatchedRouteProps(expectedRoutes, '/calculator');
+    t.deepEqual(matchedRouteProps.components[appIndex], AppProvider, 'should provide <AppProvider/> for the /calculator route');
 
-        st.deepEquals(matchedRouteProps.components[appIndex], AppProvider, 'should provide <AppProvider/> for the /calculator route');
-
-        st.end();
-    });
+    t.end();
 
 });

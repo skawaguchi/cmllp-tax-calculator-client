@@ -17,33 +17,28 @@ const teardown = (t) => {
     t.end();
 };
 
-test('# store-creator', (t) => {
+test('# Store Creator', (t) => {
 
-    t.test('should have a `createStore` method', (st) => {
-        st.equals(typeof storeCreator.createStore, 'function', 'is a function');
-        st.end();
-    });
+    t.equals(typeof storeCreator.createStore, 'function', 'should have a `createStore` method');
 
-    t.test('should return a store from a reducer with middleware applied', (st) => {
-        const fakeReducer = (state, action) => ({foo: action.bar});
-        const fakeCreatedStore = {};
-        const fakeMiddlewareFunction = () => ({});
+    const fakeReducer = (state, action) => ({foo: action.bar});
+    const fakeCreatedStore = {};
+    const fakeMiddlewareFunction = () => ({});
 
-        setup();
+    setup();
 
-        sandbox.stub(redux, 'applyMiddleware')
-            .returns(fakeMiddlewareFunction);
+    sandbox.stub(redux, 'applyMiddleware')
+        .returns(fakeMiddlewareFunction);
 
-        sandbox.stub(redux, 'createStore')
-            .returns(fakeCreatedStore);
+    sandbox.stub(redux, 'createStore')
+        .returns(fakeCreatedStore);
 
-        const expectedStore = storeCreator.createStore(fakeReducer);
+    const expectedStore = storeCreator.createStore(fakeReducer);
 
-        sinon.assert.calledWithExactly(redux.createStore, fakeReducer, fakeMiddlewareFunction);
+    sinon.assert.calledWithExactly(redux.createStore, fakeReducer, fakeMiddlewareFunction);
 
-        st.equals(expectedStore, fakeCreatedStore, 'store is returned');
+    t.equals(expectedStore, fakeCreatedStore, 'should return a store from a reducer with middleware applied');
 
-        teardown(st);
-    });
+    teardown(t);
 
 });

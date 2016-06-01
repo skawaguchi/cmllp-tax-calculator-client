@@ -22,13 +22,13 @@ function getFakeCalculation() {
     };
 }
 
-test('Calculation Type', (t) => {
+test('# Calculation Type', (t) => {
 
     setup();
 
     t.equal(CalculationType.meta.name, 'Calculation', 'should have a type name');
 
-    t.test('Structure', (st) => {
+    t.test('# Calculation Type > Structure', (st) => {
 
         st.plan(8);
 

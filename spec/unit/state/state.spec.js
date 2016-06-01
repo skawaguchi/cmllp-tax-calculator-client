@@ -13,7 +13,7 @@ test('# State', (t) => {
 
     t.equal(State.is(expectedState), true, 'should be immutable state');
 
-    t.test('Given the default state', (st) => {
+    t.test('# State > Given the default state', (st) => {
 
         st.equal(expectedState.calculation.capitalGains, 0, 'should have capital gains of 0');
 
