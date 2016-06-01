@@ -31,12 +31,13 @@ test('# Store Creator', (t) => {
     sandbox.stub(redux, 'applyMiddleware')
         .returns(fakeMiddlewareFunction);
 
-    sandbox.stub(redux, 'createStore')
+    const stub = sandbox.stub(redux, 'createStore')
         .returns(fakeCreatedStore);
 
     const expectedStore = storeCreator.createStore(fakeReducer);
 
-    sinon.assert.calledWithExactly(redux.createStore, fakeReducer, fakeMiddlewareFunction);
+    t.deepEqual(stub.firstCall.args[0], fakeReducer, 'should call the reducer');
+    t.deepEqual(stub.firstCall.args[1], fakeMiddlewareFunction, 'should call the middleware function');
 
     t.equals(expectedStore, fakeCreatedStore, 'should return a store from a reducer with middleware applied');
 

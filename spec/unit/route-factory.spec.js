@@ -3,7 +3,7 @@ import {match} from 'react-router';
 
 import {getRoutes} from '../../src/route-factory';
 
-import AppProvider from '../../src/views/AppProvider';
+import TaxCaltulatorProvider from '../../src/views/TaxCalculatorProvider';
 
 test('# Route Factory', (t) => {
 
@@ -23,7 +23,7 @@ test('# Route Factory', (t) => {
 
     setMatchedRouteProps(expectedRoutes, '/calculator');
 
-    t.deepEqual(matchedRouteProps.components[appIndex], AppProvider, 'should provide <AppProvider/> for the /calculator route');
+    t.deepEqual(matchedRouteProps.components[appIndex], TaxCaltulatorProvider, 'should provide <TaxCaltulatorProvider /> for the /calculator route');
 
     t.end();
 
