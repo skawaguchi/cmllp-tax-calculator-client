@@ -1,6 +1,8 @@
 const Hapi = require('hapi');
 const inert = require('inert');
 const path = require('path');
+const pug = require('pug');
+const vision = require('vision');
 
 const server = new Hapi.Server();
 
@@ -10,7 +12,35 @@ server.connection({
     port
 });
 
+server.register(vision, (error) => {
+    if (error) { throw error; }
+
+    server.views({
+        engines: {
+            pug: pug
+        },
+        path: './views/templates',
+        relativeTo: __dirname
+    });
+});
+
 server.register(inert, () => {});
+
+server.route({
+    method: 'GET',
+    path: '/',
+    handler: (request, reply) => {
+        reply.redirect('/tax-calculator');
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: '/tax-calculator',
+    handler: (request, reply) => {
+        reply.view('index.pug');
+    }
+});
 
 server.route({
     handler: {
