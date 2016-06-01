@@ -1,5 +1,5 @@
 {
-    "name": "cmllp-tax-calculator",
+    "name": "cmllp-tax-calculator-client",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -16,14 +16,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://skawaguchi@github.com/skawaguchi/cmllp-tax-calculator.git"
+        "url": "git+https://github.com/skawaguchi/cmllp-tax-calculator-client.git"
     },
     "author": "Stephen Kawaguchi",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/skawaguchi/cmllp-tax-calculator/issues"
+        "url": "https://github.com/skawaguchi/cmllp-tax-calculator-client/issues"
     },
-    "homepage": "https://github.com/skawaguchi/cmllp-tax-calculator#readme",
+    "homepage": "https://github.com/skawaguchi/cmllp-tax-calculator-client#readme",
     "devDependencies": {
         "autoprefixer": "^6.3.6",
         "babel-cli": "^6.9.0",
@@ -40,7 +40,6 @@
         "eslint": "^2.11.0",
         "eslint-plugin-react": "^5.1.1",
         "nodemon": "^1.9.2",
-        "path": "^0.12.7",
         "postcss": "^5.0.21",
         "postcss-loader": "^0.9.1",
         "precss": "^1.4.0",
@@ -63,6 +62,7 @@
         "babel-polyfill": "^6.9.1",
         "hapi": "^13.4.1",
         "inert": "^4.0.0",
+        "path": "^0.12.7",
         "pug": "^2.0.0-alpha8",
         "react": "^15.1.0",
         "react-dom": "^15.1.0",
