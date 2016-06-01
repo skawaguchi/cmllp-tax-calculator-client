@@ -1,6 +1,6 @@
 import test from 'tape';
 
-import * as actions from '../../src/action-list';
+import * as actions from '../../../src/actions/action-list';
 
 test('# Action List', (t) => {
 
