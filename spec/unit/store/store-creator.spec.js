@@ -17,6 +17,7 @@ const teardown = (t) => {
     t.end();
 };
 
+/* eslint-disable max-statements */
 test('# Store Creator', (t) => {
 
     t.equals(typeof storeCreator.createStore, 'function', 'should have a `createStore` method');

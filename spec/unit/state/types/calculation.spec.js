@@ -1,7 +1,7 @@
 import test from 'tape';
 import Chance from 'chance';
 
-import CalculationType from '../../../../src/state/types/calculation';
+import calculationType from '../../../../src/state/types/calculation';
 
 let chance;
 
@@ -22,11 +22,12 @@ function getFakeCalculation() {
     };
 }
 
+/* eslint-disable max-statements, no-magic-numbers */
 test('# Calculation Type', (t) => {
 
     setup();
 
-    t.equal(CalculationType.meta.name, 'Calculation', 'should have a type name');
+    t.equal(calculationType.meta.name, 'Calculation', 'should have a type name');
 
     t.test('# Calculation Type > Structure', (st) => {
 
@@ -34,7 +35,7 @@ test('# Calculation Type', (t) => {
 
         const fakeCalculation = getFakeCalculation();
 
-        const calculation = CalculationType(fakeCalculation);
+        const calculation = calculationType(fakeCalculation);
 
         st.equal(calculation.capitalGains, fakeCalculation.capitalGains, 'should match the capital gains');
 

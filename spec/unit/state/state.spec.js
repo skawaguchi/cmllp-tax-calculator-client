@@ -1,8 +1,5 @@
-import tcomb from 'tcomb';
 import test from 'tape';
-import sinon from 'sinon';
 
-import CalculationType from '../../../src/state/types/calculation';
 import State, {getDefaultState} from '../../../src/state/state';
 
 test('# State', (t) => {
