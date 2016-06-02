@@ -79,7 +79,7 @@ server.register({
                 name: 'SafeJson'
             }, {
                 module: 'good-file',
-                args: ['./test/fixtures/awesome_log']
+                args: ['./logs/activity.log']
             }]
         }
     }
