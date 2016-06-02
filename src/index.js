@@ -2,9 +2,9 @@ import 'babel-polyfill';
 import React from 'react';
 import {render} from 'react-dom';
 
-import AppProvider from './AppProvider';
+import TaxCalculatorProvider from './views/TaxCalculatorProvider';
 
 render(
-    <AppProvider />,
+    <TaxCalculatorProvider />,
     document.getElementById('tax-calculator-app')
 );

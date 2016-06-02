@@ -13,9 +13,8 @@ module.exports = {
     output: {
         filename: pkg.name + '.js',
         libraryTarget: 'umd',
-        path: path.join(__dirname, './build'),
+        path: path.join(__dirname, '/build'),
         publicPath: '/build/'
-
     },
     module: {
         loaders: [
@@ -24,7 +23,7 @@ module.exports = {
                 include: path.join(__dirname, 'src'),
                 loaders: ['react-hot', 'babel']
             },
-            {test: /\.css$/, loaders: ['style', 'css', 'postcss']},
+            {test: /\.css$/, loaders: ['style', 'css', 'postcss']}
         ]
     },
     plugins: [
