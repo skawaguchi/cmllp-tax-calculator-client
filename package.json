@@ -7,7 +7,7 @@
     "node": "6.1.0"
   },
   "scripts": {
-    "build": "rimraf ./public/cmllp-tax-calculator.* && webpack -p --config webpack.build.config.js",
+    "build": "rimraf ./public/cmllp-tax-calculator-client.* && webpack -p --config webpack.build.config.js",
     "dev": "nodemon ./server",
     "dev:react": "node ./dev-server",
     "eslint": "eslint './{spec/unit, src}/**/*.js'",
