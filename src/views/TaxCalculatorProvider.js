@@ -1,30 +1,43 @@
 import React, {Component, PropTypes} from 'react';
 import {Provider} from 'react-redux';
-import {Router, Route, browserHistory} from 'react-router';
-import {syncHistoryWithStore} from 'react-router-redux';
+import {IntlProvider} from 'react-intl';
 
 import {getCombinedReducer} from '../reducers/index';
-import {createStore} from '../store/store-creator';
-import TaxCalculatorContainer from './TaxCalculatorContainer';
+import {configureStore} from '../store/store-creator';
+import TaxCalculatorRoutes from './TaxCalculatorRoutes';
+import * as translations from '../i18n/en';
 
 class TaxCalculatorProvider extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            locale: 'en'
+        };
+    }
+
     componentWillMount() {
         const reducer = getCombinedReducer();
-        const store = createStore(reducer);
+        const store = configureStore(reducer);
 
         this.setState({
-            store
-        })
+            store,
+            translations
+        });
     }
 
     render() {
         return (
-            <Provider store={this.state.store}>
-                <Router history={syncHistoryWithStore(browserHistory, this.state.store)}>
-                    <Route path=":province" component={TaxCalculatorContainer} />
-                </Router>
-            </Provider>
+            <IntlProvider
+                locale={this.state.locale}
+                messages={this.state.translations.default}
+            >
+                <Provider
+                    store={this.state.store}
+                >
+                    <TaxCalculatorRoutes />
+                </Provider>
+            </IntlProvider>
         );
     }
 }
