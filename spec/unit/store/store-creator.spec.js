@@ -20,9 +20,9 @@ const teardown = (t) => {
 /* eslint-disable max-statements */
 test('# Store Creator', (t) => {
 
-    t.equals(typeof storeCreator.createStore, 'function', 'should have a `createStore` method');
+    t.equals(typeof storeCreator.configureStore, 'function', 'should have a `configureStore` method');
 
-    const fakeReducer = (state, action) => ({foo: action.bar});
+    const fakeReducer = (state, action) => ({foo: action});
     const fakeCreatedStore = {};
     const fakeMiddlewareFunction = () => ({});
 
@@ -34,7 +34,7 @@ test('# Store Creator', (t) => {
     const stub = sandbox.stub(redux, 'createStore')
         .returns(fakeCreatedStore);
 
-    const expectedStore = storeCreator.createStore(fakeReducer);
+    const expectedStore = storeCreator.configureStore(fakeReducer);
 
     t.deepEqual(stub.firstCall.args[0], fakeReducer, 'should call the reducer');
     t.deepEqual(stub.firstCall.args[1], fakeMiddlewareFunction, 'should call the middleware function');
