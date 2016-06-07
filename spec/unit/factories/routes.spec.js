@@ -15,10 +15,10 @@ function setup() {
 
 function setMatchedRouteProps(routes, location) {
     match({
-        routes: routes,
-        location: location
+        routes,
+        location
     }, (error, redirectLocation, renderProps) => {
-        matchedRouteProps = renderProps
+        matchedRouteProps = renderProps;
     });
 }
 

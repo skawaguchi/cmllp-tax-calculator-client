@@ -27,6 +27,7 @@ function createFakeStore() {
     };
 }
 
+/* eslint-disable max-statements */
 test('# <TaxCalculatorProvider /> > Given the view is rendered', (t) => {
 
     setup();
