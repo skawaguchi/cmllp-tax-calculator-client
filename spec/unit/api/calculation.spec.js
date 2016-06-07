@@ -1,5 +1,4 @@
 import 'isomorphic-fetch';
-import Chance from 'chance';
 import sinon from 'sinon';
 import test from 'tape';
 
@@ -21,6 +20,7 @@ test('# Calculation Resources', (t) => {
 
     setup();
 
+    /* eslint-disable no-native-reassign */
     fetch = sandbox.stub().returns({
         then: () => ({
             catch: () => ({})
@@ -29,7 +29,7 @@ test('# Calculation Resources', (t) => {
 
     calculationResources.getCalculation(fakePayload);
 
-    t.equal(fetch.firstCall.args[0], `https://cmllp-tax-calculator-api.herokuapp.com/calculations?some=payload`);
+    t.equal(fetch.firstCall.args[0], 'https://cmllp-tax-calculator-api.herokuapp.com/calculations?some=payload');
 
     teardown();
 
