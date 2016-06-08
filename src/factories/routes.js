@@ -7,7 +7,7 @@ export function getRoutes() {
     return createRoutes(
         <Route
             component={TaxCalculatorView}
-            path="calculator/:province"
+            path='calculator/:province'
         />
     );
 }

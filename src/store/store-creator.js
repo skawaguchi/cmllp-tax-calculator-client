@@ -5,7 +5,7 @@ export function configureStore(reducer) {
     const middleWare = [thunk];
 
     return createStore(
-        reducer, 
+        reducer,
         applyMiddleware(...middleWare)
     );
 }

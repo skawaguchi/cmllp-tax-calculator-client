@@ -1,8 +1,8 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import CalculationControls from './CalculationControls';
 
-function TaxCalculatorView(props) {
+function TaxCalculatorView() {
     return (
         <section>
             <h1><FormattedMessage id='labels.appTitle' /></h1>
@@ -12,6 +12,5 @@ function TaxCalculatorView(props) {
         </section>
     );
 }
-
 
 export default TaxCalculatorView;

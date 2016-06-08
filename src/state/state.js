@@ -2,12 +2,12 @@ import t from 'tcomb';
 
 import Calculation from './types/calculation';
 
-const State = t.struct({
+const state = t.struct({
     calculation: Calculation
 }, 'State');
 
 export function getDefaultState() {
-    return State({
+    return state({
         calculation: {
             capitalGains: 0,
             eligibleDividends: 0,
@@ -21,4 +21,4 @@ export function getDefaultState() {
     });
 }
 
-export default State;
+export default state;

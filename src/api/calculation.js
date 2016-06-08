@@ -8,7 +8,5 @@ export function getCalculation(payload = {province: 'on'}) {
     const resourceURL = `${serviceURL}/calculations${params}`;
 
     return fetch(resourceURL)
-        .then((response) => {
-            return response.json();
-        });
+        .then((response) => response.json());
 }
