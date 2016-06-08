@@ -3,7 +3,6 @@ import test from 'tape';
 
 import {getDefaultState} from '../../../src/state/state';
 import calculationReducer from '../../../src/reducers/calculations';
-import {CALCULATION_LOADED} from '../../../src/actions/action-list';
 
 function getFakeCalcuation() {
     const chance = new Chance();
@@ -47,7 +46,7 @@ test(`${suiteName} Given the provided action is CALCULATION_LOADED`, (t) => {
     const expectedState = getFakeCalcuation();
     const fakeAction = {
         calculation: expectedState,
-        type: CALCULATION_LOADED
+        type: 'CALCULATION_LOADED'
     };
     const returnedState = calculationReducer(initialState, fakeAction);
 
