@@ -8,7 +8,7 @@ test('# TaxCalculatorView > Given the control renders', (t) => {
 
     const component = shallow(<TaxCalculatorView />);
 
-    t.equal(component.find('CalculationControls').length, 1, 'should have a <CalculatorControls /> child');
+    t.equal(component.find('Connect(CalculationControls)').length, 1, 'should have a <CalculatorControls /> child');
 
     t.end();
 });
