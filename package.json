@@ -10,7 +10,7 @@
     "build": "rimraf ./public/cmllp-tax-calculator-client.* && webpack -p --config webpack.build.config.js",
     "dev": "nodemon ./server",
     "dev:react": "node ./dev-server",
-    "eslint": "eslint './{spec/unit, src}/**/*.js'",
+    "eslint": "eslint './{spec/unit,src}/**/*.js'",
     "start": "node ./server",
     "test": "babel-tape-runner \"./spec/unit/**/*.spec.js\" | tap-notify | tap-diff",
     "verify": "npm run eslint && npm run test"
