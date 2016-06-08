@@ -1,20 +1,23 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes, Component} from 'react';
 
-function inputChanged(changeHandler, event) {
-    changeHandler(event.target.value);
+function inputChanged(id, changeHandler, event) {
+    changeHandler(id, event.target.value);
 }
 
-function CalculationInput(props) {
-    return (
-        <div className='calculation-input'>
-            <label>{props.label}</label>
-            <input onChange={inputChanged.bind(this, props.changeHandler)} />
-        </div>
-    );
+class CalculationInput extends Component {
+    render() {
+        return (
+            <div className='calculation-input'>
+                <label>{this.props.label}</label>
+                <input onChange={inputChanged.bind(null, this.props.inputID, this.props.changeHandler)} />
+            </div>
+        );
+    }
 }
 
 CalculationInput.propTypes = {
     changeHandler: PropTypes.func.isRequired,
+    inputID: PropTypes.string.isRequired,
     label: PropTypes.string
 };
 
