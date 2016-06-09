@@ -23,7 +23,10 @@ test('# CalculationControls > Given the control renders', (t) => {
     setup();
 
     const component = shallow(
-        <CalculationControls />
+        <CalculationControls
+            dispatch={() => {}}
+            params={{province: 'fake province'}}
+        />
     );
 
     t.equal(component.find('.calculation-controls').length, 1, 'should have  a container for controls');
@@ -41,7 +44,9 @@ test('# CalculationControls > Input Controls', (t) => {
 
     const component = shallow(
         <CalculationControls
+            dispatch={() => {}}
             normalIncome={fakeNormalIncome}
+            params={{province: 'fake province'}}
         />
     );
 
@@ -62,4 +67,3 @@ test('# CalculationControls > Input Controls', (t) => {
 
     t.end();
 });
-
