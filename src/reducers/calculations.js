@@ -1,22 +1,15 @@
 import {getDefaultState} from '../state/state';
-import calculationType from '../state/types/calculation';
+import Calculations from '../state/types/calculations';
 
-function setCalculation(state, action) {
-    return calculationType(action.calculation);
+function calculationLoaded(state, action) {
+    const stateUpdates = {$set: action.calculations};
+
+    return Calculations.update(state, stateUpdates);
 }
 
-function normalIncomeChanged(state, action) {
-    const numericValue = Number(action.value);
-
-    return Object.assign({}, state, {
-        [action.id]: numericValue
-    });
-}
-
-export default (state = getDefaultState().calculation, action) => {
+export default (state = getDefaultState().calculations, action) => {
     const actionHandlers = {
-        'CALCULATION_LOADED': setCalculation,
-        'NORMAL_INCOME_CHANGED': normalIncomeChanged
+        'CALCULATION_LOADED': calculationLoaded
     };
     const reducer = actionHandlers[action.type];
 

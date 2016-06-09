@@ -1,6 +1,6 @@
 import t from 'tcomb';
 
-const Calculation = t.struct({
+const Inputs = t.struct({
     capitalGains: t.Number,
     eligibleDividends: t.Number,
     ineligibleDividends: t.Number,
@@ -9,6 +9,6 @@ const Calculation = t.struct({
     rrspContributions: t.Number,
     taxesAlreadyPaid: t.Number,
     year: t.String
-}, 'Calculation');
+}, 'Inputs');
 
-export default Calculation;
+export default Inputs;

@@ -1,14 +1,31 @@
 import t from 'tcomb';
+import moment from 'moment';
 
-import Calculation from './types/calculation';
+import Calculations from './types/calculations';
+import Inputs from './types/inputs';
 
-const state = t.struct({
-    calculation: Calculation
+const State = t.struct({
+    calculations: Calculations,
+    inputs: Inputs
 }, 'State');
 
 export function getDefaultState() {
-    return state({
-        calculation: {
+    return State({
+        calculations: {
+            incomeAfterTaxes: 0,
+            federalEligibleDividendTaxCredit: 0,
+            federalIneligibleDividendTaxCredit: 0,
+            netTaxPayable: 0,
+            provincialEligibleDividendTaxCredit: 0,
+            provincialIneligibleDividendTaxCredit: 0,
+            taxableDividends: 0,
+            taxableNormalIncome: 0,
+            totalOverallTaxes: 0,
+            totalTaxableIncome: 0,
+            totalTaxCredits: 0,
+            totalTaxes: 0
+        },
+        inputs: {
             capitalGains: 0,
             eligibleDividends: 0,
             ineligibleDividends: 0,
@@ -16,9 +33,9 @@ export function getDefaultState() {
             province: '',
             rrspContributions: 0,
             taxesAlreadyPaid: 0,
-            year: ''
+            year: moment().format('YYYY')
         }
     });
 }
 
-export default state;
+export default State;

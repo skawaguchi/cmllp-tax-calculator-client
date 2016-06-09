@@ -3,6 +3,7 @@ import test from 'tape';
 import * as redux from 'redux';
 
 import calculations from '../../../src/reducers/calculations';
+import inputs from '../../../src/reducers/inputs';
 import {getCombinedReducer} from '../../../src/reducers/index';
 
 let sandbox;
@@ -23,7 +24,8 @@ test('# Combined Reducers', (t) => {
     getCombinedReducer();
 
     t.deepEqual(stub.firstCall.args[0], {
-        calculations
+        calculations,
+        inputs
     }, 'should get the combined reducers');
 
     teardown();

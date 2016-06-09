@@ -4,18 +4,22 @@ import test from 'tape';
 import {getDefaultState} from '../../../src/state/state';
 import calculationReducer from '../../../src/reducers/calculations';
 
-function getFakeCalcuation() {
+function getFakeCalcuations() {
     const chance = new Chance();
 
     return {
-        capitalGains: chance.floating(),
-        eligibleDividends: chance.floating(),
-        ineligibleDividends: chance.floating(),
-        province: chance.province(),
-        normalIncome: chance.floating(),
-        rrspContributions: chance.floating(),
-        taxesAlreadyPaid: chance.floating(),
-        year: chance.year().toString()
+        incomeAfterTaxes: chance.floating(),
+        federalEligibleDividendTaxCredit: chance.floating(),
+        federalIneligibleDividendTaxCredit: chance.floating(),
+        netTaxPayable: chance.floating(),
+        provincialEligibleDividendTaxCredit: chance.floating(),
+        provincialIneligibleDividendTaxCredit: chance.floating(),
+        taxableDividends: chance.floating(),
+        taxableNormalIncome: chance.floating(),
+        totalOverallTaxes: chance.floating(),
+        totalTaxableIncome: chance.floating(),
+        totalTaxCredits: chance.floating(),
+        totalTaxes: chance.floating()
     };
 }
 
@@ -23,7 +27,7 @@ const suiteName = '# Calculations Reducer >';
 
 test(`${suiteName} Given the provided state is undefined`, (t) => {
     const previousState = undefined;
-    const expectedState = getDefaultState().calculation;
+    const expectedState = getDefaultState().calculations;
     const returnedState = calculationReducer(previousState, {});
 
     t.deepEqual(returnedState, expectedState, 'should return the default state');
@@ -31,7 +35,7 @@ test(`${suiteName} Given the provided state is undefined`, (t) => {
     t.end();
 });
 
-test(`${suiteName} Given the provided action has no handler`, (t) => {
+test(`${suiteName} Given the provided action has no matching handler`, (t) => {
     const nonExistentAction = '_NON_EXISTENT_ACTION';
     const initialState = {};
     const returnedState = calculationReducer(initialState, {type: nonExistentAction});
@@ -43,9 +47,9 @@ test(`${suiteName} Given the provided action has no handler`, (t) => {
 
 test(`${suiteName} Given the provided action is CALCULATION_LOADED`, (t) => {
     const initialState = {};
-    const expectedState = getFakeCalcuation();
+    const expectedState = getFakeCalcuations();
     const fakeAction = {
-        calculation: expectedState,
+        calculations: expectedState,
         type: 'CALCULATION_LOADED'
     };
     const returnedState = calculationReducer(initialState, fakeAction);
