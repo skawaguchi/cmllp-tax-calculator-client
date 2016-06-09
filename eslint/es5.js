@@ -34,7 +34,7 @@ module.exports = {
         "max-nested-callbacks": [0, 2],
         "max-params": [0, 3],
         "max-statements": [2, 10],
-        "new-cap": 2,
+        "new-cap": 0,
         "new-parens": 2,
         "newline-after-var": 2,
         "no-alert": 2,
