@@ -2,7 +2,7 @@ import 'isomorphic-fetch';
 import sinon from 'sinon';
 import test from 'tape';
 
-import * as calculationResources from '../../../src/api/calculation';
+import {performCalculation} from '../../../src/api/performCalculation';
 
 let sandbox;
 
@@ -14,7 +14,7 @@ function teardown() {
     sandbox.restore();
 }
 
-test('# Calculation Resources', (t) => {
+test('# Calculation API', (t) => {
 
     const fakePayload = {some: 'payload'};
 
@@ -27,9 +27,9 @@ test('# Calculation Resources', (t) => {
         })
     });
 
-    calculationResources.getCalculation(fakePayload);
+    performCalculation(fakePayload);
 
-    t.equal(fetch.firstCall.args[0], 'https://cmllp-tax-calculator-api.herokuapp.com/calculations?some=payload');
+    t.equal(fetch.firstCall.args[0], 'https://cmllp-tax-calculator-api.herokuapp.com/calculations?some=payload', 'should append the payload to the service url');
 
     teardown();
 
