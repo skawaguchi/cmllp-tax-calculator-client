@@ -3,14 +3,20 @@ import {FormattedMessage} from 'react-intl';
 
 import CalculationOutput from './CalculationOutput';
 
+import './tax-calculator.scss';
+
 function TaxCalculatorView(props) {
     return (
         <section id='tax-calculator-view'>
             <h1><FormattedMessage id='labels.appTitle'/></h1>
-            <section id='input-container'>{props.children}</section>
-            <section id='output-container'>
-                <CalculationOutput />
-            </section>
+            <ul className='calculations-container'>
+                <li id='input-container'>
+                    {props.children}
+                </li>
+                <li id='output-container'>
+                    <CalculationOutput />
+                </li>
+            </ul>
         </section>
     );
 }
