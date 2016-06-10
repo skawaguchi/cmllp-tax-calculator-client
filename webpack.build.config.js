@@ -23,7 +23,7 @@ module.exports = {
                 include: path.join(__dirname, 'src'),
                 loader: 'babel'
             },
-            {test: /\.css$/, loaders: ['style', 'css', 'postcss']}
+            {test: /\.scss$/, loaders: ['style', 'css', 'sass', 'postcss']}
         ]
     },
     plugins: [
