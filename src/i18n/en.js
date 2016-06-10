@@ -1,5 +1,5 @@
 export default {
-    'labels.appTitle': 'Tax Calculator',
+    'labels.appTitle': 'Income Tax Calculator',
     'labels.capitalGains': 'Capital Gains',
     'labels.eligibleDividends': 'Eligible Dividends',
     'labels.federalEligibleDividendTaxCredit': 'Federal Eligible Dividend Tax Credit',
