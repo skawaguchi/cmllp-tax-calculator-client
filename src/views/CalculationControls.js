@@ -76,7 +76,15 @@ export function CalculationControls(props) {
                 labelKey='labels.taxesAlreadyPaid'
             />
 
-            <button type='submit' onClick={submitClicked.bind(null, props)}><FormattedMessage id='labels.submit'/></button>
+            <button
+                className='submit-button'
+                type='submit'
+                onClick={submitClicked.bind(null, props)}
+            >
+                <FormattedMessage
+                    id='labels.submit'
+                />
+            </button>
         </section>
     );
 }
