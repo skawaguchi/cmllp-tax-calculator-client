@@ -1,5 +1,4 @@
 const good = require('good');
-const goodFile = require('good-file');
 const Hapi = require('hapi');
 const inert = require('inert');
 const path = require('path');
@@ -32,28 +31,24 @@ server.route({
     method: 'GET',
     path: '/',
     handler: (request, reply) => {
-        reply.redirect('/tax-calculator');
+        reply.redirect('/tax-calculator/on');
     }
 });
 
 server.route({
+    handler: (request, reply) => {
+        reply.file('./public/cmllp-tax-calculator-client.' + request.params.ext);
+    },
     method: 'GET',
-    path: '/tax-calculator',
+    path: '/tax-calculator/cmllp-tax-calculator-client.{ext}'
+});
+
+server.route({
+    method: 'GET',
+    path: '/tax-calculator/{province}',
     handler: (request, reply) => {
         reply.view('index.pug');
     }
-});
-
-server.route({
-    handler: {
-        directory: {
-            index: true,
-            listing: false,
-            path: './public'
-        }
-    },
-    method: 'GET',
-    path: '/{path*}'
 });
 
 server.register({
