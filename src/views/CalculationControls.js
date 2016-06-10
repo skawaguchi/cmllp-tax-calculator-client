@@ -36,11 +36,6 @@ export function CalculationControls(props) {
                 labelKey='labels.normalIncome'
             />
             <button type='submit' onClick={submitClicked.bind(null, props)}><FormattedMessage id='labels.submit'/></button>
-
-            <dl>
-                <dt>Income After Taxes</dt>
-                <dd>{props.incomeAfterTaxes}</dd>
-            </dl>
         </section>
     );
 }
