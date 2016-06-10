@@ -74,6 +74,19 @@ test('# CalculationControls > Input Controls', (t) => {
         st.end();
     });
 
+    t.test('## Capital Gains Input', (st) => {
+
+        const childComponent = component.find('.capital-gains-input');
+
+        st.equal(childComponent.length, 1, 'should have an input');
+        st.equal(childComponent.prop('className'), 'capital-gains-input', 'should set the className');
+        st.equal(childComponent.prop('inputID'), 'capitalGains', 'should set the flag for calculations');
+        st.equal(childComponent.prop('inputValue'), fakeInputs.capitalGains, 'should set the value');
+        st.equal(childComponent.prop('labelKey'), 'labels.capitalGains', 'should set the key for localized labels');
+
+        st.end();
+    });
+
     teardown();
 
     t.end();

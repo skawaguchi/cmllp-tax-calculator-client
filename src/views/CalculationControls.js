@@ -36,6 +36,14 @@ export function CalculationControls(props) {
                 labelKey='labels.normalIncome'
             />
 
+            <CalculationInput
+                changeHandler={inputChanged.bind(null, props)}
+                className='capital-gains-input'
+                inputID='capitalGains'
+                inputValue={props.inputs.capitalGains}
+                labelKey='labels.capitalGains'
+            />
+
             <button type='submit' onClick={submitClicked.bind(null, props)}><FormattedMessage id='labels.submit'/></button>
         </section>
     );
