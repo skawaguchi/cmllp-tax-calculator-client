@@ -13,6 +13,7 @@ export default {
     'labels.rrspContributions': 'RRSP Contributions',
     'labels.taxableDividends': 'Taxable Dividends',
     'labels.taxableNormalIncome': 'Taxable Normal Income',
+    'labels.taxesAlreadyPaid': 'Taxes Already Paid',
     'labels.totalTaxCredits': 'Total Tax Credits',
     'labels.totalTaxes': 'Total Taxes',
     'labels.submit': 'Submit'

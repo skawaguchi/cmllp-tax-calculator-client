@@ -44,6 +44,38 @@ export function CalculationControls(props) {
                 labelKey='labels.capitalGains'
             />
 
+            <CalculationInput
+                changeHandler={inputChanged.bind(null, props)}
+                className='eligible-dividends-input'
+                inputID='eligibleDividends'
+                inputValue={props.inputs.eligibleDividends}
+                labelKey='labels.eligibleDividends'
+            />
+
+            <CalculationInput
+                changeHandler={inputChanged.bind(null, props)}
+                className='ineligible-dividends-input'
+                inputID='ineligibleDividends'
+                inputValue={props.inputs.ineligibleDividends}
+                labelKey='labels.ineligibleDividends'
+            />
+
+            <CalculationInput
+                changeHandler={inputChanged.bind(null, props)}
+                className='rrsp-contributions-input'
+                inputID='rrspContributions'
+                inputValue={props.inputs.rrspContributions}
+                labelKey='labels.rrspContributions'
+            />
+
+            <CalculationInput
+                changeHandler={inputChanged.bind(null, props)}
+                className='taxes-already-paid-input'
+                inputID='taxesAlreadyPaid'
+                inputValue={props.inputs.taxesAlreadyPaid}
+                labelKey='labels.taxesAlreadyPaid'
+            />
+
             <button type='submit' onClick={submitClicked.bind(null, props)}><FormattedMessage id='labels.submit'/></button>
         </section>
     );
