@@ -29,9 +29,9 @@ test('# Routes Factory', (t) => {
     const returnedRoutes = getRoutes();
     const mockProvince = chance.province();
 
-    setMatchedRouteProps(returnedRoutes, `/calculator/${mockProvince}`);
+    setMatchedRouteProps(returnedRoutes, `/tax-calculator/${mockProvince}`);
 
-    t.equal(matchedRouteProps.components[0], TaxCalculatorView, 'should set <TaxCalculatorView/> when the route is /calculator/:province');
+    t.equal(matchedRouteProps.components[0], TaxCalculatorView, 'should set <TaxCalculatorView/> when the route is /:province');
 
     t.end();
 });

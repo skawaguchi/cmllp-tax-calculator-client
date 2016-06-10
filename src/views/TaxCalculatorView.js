@@ -4,10 +4,8 @@ import {FormattedMessage} from 'react-intl';
 function TaxCalculatorView(props) {
     return (
         <section id='tax-calculator-view'>
-            <h1><FormattedMessage id='labels.appTitle' /></h1>
-            <section>
-                {props.children}
-            </section>
+            <h1><FormattedMessage id='labels.appTitle'/></h1>
+            <section>{props.children}</section>
         </section>
     );
 }

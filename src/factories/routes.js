@@ -8,7 +8,7 @@ export function getRoutes() {
     return createRoutes(
         <Route
             component={TaxCalculatorView}
-            path='calculator'
+            path='tax-calculator'
         >
             <Route
                 component={CalculationControls}
