@@ -30,13 +30,15 @@ test('# CalculationInput > Given the control renders', (t) => {
     const fakeValue = chance.floating({max: 10000});
     const fakeChangeHandler = () => {};
 
-    const component = shallow(<CalculationInput
+    const component = shallow(
+        <CalculationInput
             changeHandler={fakeChangeHandler}
             className={fakeClassName}
             inputID={fakeInputID}
             inputValue={fakeValue}
             labelKey={fakeLabelKey}
-        />);
+        />
+    );
 
     t.equal(component.type(), 'div', 'should be a <div/>');
 

@@ -7,7 +7,11 @@ import CalculationOutput from '../../../src/views/CalculationOutput';
 
 test('# TaxCalculatorView > Given the control renders', (t) => {
 
-    const component = shallow(<TaxCalculatorView />);
+    const component = shallow(
+        <TaxCalculatorView
+            children={<div className='.fake-child'></div>}
+        />
+    );
 
     t.equal(component.type(), 'section', 'should be a <section/>');
     t.equal(component.find('#tax-calculator-view').length, 1, 'should have a css identifier');
