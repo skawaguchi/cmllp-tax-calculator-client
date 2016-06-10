@@ -1,6 +1,6 @@
 import {performCalculation} from '../api/performCalculation';
 
-export const changeNormalIncome = (id, value) => (dispatch) => {
+export const changeInput = (id, value) => (dispatch) => {
     dispatch({
         id,
         type: 'INPUT_CHANGED',

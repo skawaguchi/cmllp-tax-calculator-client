@@ -26,7 +26,7 @@ test('# Action Creator: Change Normal Income', (t) => {
     const fakeID = chance.hash({length: 3});
     const fakeValue = chance.floating();
 
-    actionCreators.changeNormalIncome(fakeID, fakeValue)(fakeDispatch);
+    actionCreators.changeInput(fakeID, fakeValue)(fakeDispatch);
 
     const callerArguments = fakeDispatch.firstCall.args[0];
 

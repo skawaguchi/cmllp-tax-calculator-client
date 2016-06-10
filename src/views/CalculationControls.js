@@ -3,20 +3,21 @@ import {connect} from 'react-redux';
 import moment from 'moment';
 
 import CalculationInput from './CalculationInput';
-import {
-    getIncomeAfterTaxes,
-    getNormalIncome
-} from '../reducers/getAttributes';
 import {FormattedMessage} from 'react-intl';
 import {
-    changeNormalIncome,
+    changeInput,
     getCalculations,
     setProvince,
     setYear
 } from '../actions/action-creators';
+import Inputs from '../state/types/inputs';
 
 function submitClicked(props) {
     props.dispatch(getCalculations());
+}
+
+function inputChanged(props, id, value) {
+    props.dispatch(changeInput(id, value));
 }
 
 export function CalculationControls(props) {
@@ -26,15 +27,15 @@ export function CalculationControls(props) {
 
     return (
         <section className='calculation-controls'>
+
             <CalculationInput
-                changeHandler={(id, value) => {
-                    props.dispatch(changeNormalIncome(id, value));
-                }}
+                changeHandler={inputChanged.bind(null, props)}
                 className='normal-income-input'
                 inputID='normalIncome'
-                inputValue={props.normalIncome}
+                inputValue={props.inputs.normalIncome}
                 labelKey='labels.normalIncome'
             />
+
             <button type='submit' onClick={submitClicked.bind(null, props)}><FormattedMessage id='labels.submit'/></button>
         </section>
     );
@@ -42,13 +43,12 @@ export function CalculationControls(props) {
 
 CalculationControls.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    incomeAfterTaxes: PropTypes.number.isRequired,
-    normalIncome: PropTypes.number.isRequired
+    inputs: PropTypes.instanceOf(Inputs).isRequired,
+    params: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
-    incomeAfterTaxes: getIncomeAfterTaxes(state),
-    normalIncome: getNormalIncome(state)
+    inputs: state.inputs
 });
 
 export default connect(mapStateToProps)(CalculationControls);
