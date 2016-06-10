@@ -32,7 +32,7 @@ test(`${suiteName} Given the provided action has no matching handler`, (t) => {
     t.end();
 });
 
-test(`${suiteName} Given the provided action is CALCULATION_LOADED`, (t) => {
+test(`${suiteName} Given the action is to update the normal income`, (t) => {
 
     setup();
 
@@ -40,7 +40,7 @@ test(`${suiteName} Given the provided action is CALCULATION_LOADED`, (t) => {
     const initialState = getDefaultState().inputs;
     const fakeAction = {
         id: 'normalIncome',
-        type: 'NORMAL_INCOME_CHANGED',
+        type: 'INPUT_CHANGED',
         value: expectedValue
     };
     const returnedState = inputsReducer(initialState, fakeAction);
@@ -50,15 +50,17 @@ test(`${suiteName} Given the provided action is CALCULATION_LOADED`, (t) => {
     t.end();
 });
 
-test(`${suiteName} Given the provided action is PROVINCE_CHANGED`, (t) => {
+test(`${suiteName} Given the action is to update the province`, (t) => {
 
     setup();
 
     const expectedValue = chance.province();
     const initialState = getDefaultState().inputs;
     const fakeAction = {
-        province: expectedValue,
-        type: 'PROVINCE_CHANGED'
+        id: 'province',
+        isString: true,
+        type: 'INPUT_CHANGED',
+        value: expectedValue
     };
     const returnedState = inputsReducer(initialState, fakeAction);
 
@@ -67,15 +69,17 @@ test(`${suiteName} Given the provided action is PROVINCE_CHANGED`, (t) => {
     t.end();
 });
 
-test(`${suiteName} Given the provided action is YEAR_CHANGED`, (t) => {
+test(`${suiteName} Given the action is to update the year`, (t) => {
 
     setup();
 
     const expectedValue = chance.year();
     const initialState = getDefaultState().inputs;
     const fakeAction = {
-        year: expectedValue,
-        type: 'YEAR_CHANGED'
+        id: 'year',
+        isString: true,
+        type: 'INPUT_CHANGED',
+        value: expectedValue
     };
     const returnedState = inputsReducer(initialState, fakeAction);
 

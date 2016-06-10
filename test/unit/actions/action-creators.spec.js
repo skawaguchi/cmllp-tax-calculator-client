@@ -31,7 +31,7 @@ test('# Action Creator: Change Normal Income', (t) => {
     const callerArguments = fakeDispatch.firstCall.args[0];
 
     t.equal(callerArguments.id, fakeID, 'should call the dispatch function with the id');
-    t.equal(callerArguments.type, 'NORMAL_INCOME_CHANGED', 'should call the dispatch function with the normal income changed type');
+    t.equal(callerArguments.type, 'INPUT_CHANGED', 'should call the dispatch function with the normal income changed type');
     t.equal(callerArguments.value, fakeValue, 'should call the dispatch function with the value');
 
     teardown();

@@ -3,7 +3,7 @@ import {performCalculation} from '../api/performCalculation';
 export const changeNormalIncome = (id, value) => (dispatch) => {
     dispatch({
         id,
-        type: 'NORMAL_INCOME_CHANGED',
+        type: 'INPUT_CHANGED',
         value
     });
 };
@@ -37,15 +37,19 @@ export const getCalculations = () => async function (dispatch, getState) {
 
 export const setProvince = (province) => (dispatch) => {
     dispatch({
-        type: 'PROVINCE_CHANGED',
-        province
+        id: 'province',
+        isString: true,
+        type: 'INPUT_CHANGED',
+        value: province
     });
 };
 
 export const setYear = (year) => (dispatch) => {
     dispatch({
+        id: 'year',
+        isString: true,
         type: 'YEAR_CHANGED',
-        year
+        value: year
     });
 };
 
