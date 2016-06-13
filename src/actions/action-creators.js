@@ -1,4 +1,4 @@
-import {performCalculation} from '../api/performCalculation';
+import {performCalculation} from '../api/perform-calculation';
 
 export const changeInput = (id, value) => (dispatch) => {
     dispatch({
