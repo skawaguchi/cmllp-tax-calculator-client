@@ -10,7 +10,7 @@ export default {
     'labels.normalIncome': 'Normal Income',
     'labels.province': 'Province',
     'labels.provinces.alberta': 'Alberta',
-    'labels.provinces.britishColumbia': 'British Columnbia',
+    'labels.provinces.britishColumbia': 'British Columbia',
     'labels.provinces.manitoba': 'Manitoba',
     'labels.provinces.newBrunswick': 'New Brunswick',
     'labels.provinces.newfoundlandLabrador': 'New Brunswick & Labrador',
