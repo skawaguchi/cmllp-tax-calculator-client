@@ -12,7 +12,7 @@
     "dev:react": "node ./dev-server",
     "eslint": "eslint './{test/unit,src}/**/*.js'",
     "start": "node ./server",
-    "test": "babel-tape-runner \"./test/unit/**/*.spec.js\" | tap-notify | tap-diff",
+    "test": "babel-tape-no-css -f \"./test/unit/**/*.spec.js\" -nc | tap-notify | tap-diff",
     "verify": "npm run eslint && npm run test"
   },
   "repository": {
@@ -35,7 +35,8 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-3": "^6.5.0",
-    "babel-tape-runner": "^2.0.1",
+    "babel-tape-no-css": "^1.0.1",
+    "blue-tape": "^0.2.0",
     "chance": "^1.0.3",
     "css-loader": "^0.23.1",
     "enzyme": "^2.3.0",
