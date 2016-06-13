@@ -35,6 +35,7 @@ test('# <CalculationSelect/> > Given the component has rendered', (t) => {
     const fakeChangeHandler = sandbox.stub();
     const fakeSelectID = chance.hash();
     const fakeLabelKey = chance.hash();
+    const fakeSelectedValue = chance.string();
     const fakeOptions = [
         getFakeOption(),
         getFakeOption(),
@@ -53,6 +54,7 @@ test('# <CalculationSelect/> > Given the component has rendered', (t) => {
             labelKey={fakeLabelKey}
             options={fakeOptions}
             selectID={fakeSelectID}
+            selectedValue={fakeSelectedValue}
         />,
         {context: fakeContext}
     );
@@ -67,6 +69,7 @@ test('# <CalculationSelect/> > Given the component has rendered', (t) => {
     t.equal(component.find('label').find('FormattedMessage').prop('id'), fakeLabelKey, 'should pass a key for the label translation');
     t.equal(component.unrendered.props.changeHandler, fakeChangeHandler, 'should have a change handler');
     t.equal(component.find('option').length, fakeOptions.length, 'should have a list of options');
+    t.equal(component.unrendered.props.selectedValue, fakeSelectedValue, 'should set the value');
 
     t.test('when the select is changed', (st) => {
 

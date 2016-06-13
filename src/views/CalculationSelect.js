@@ -28,6 +28,7 @@ function CalculationSelect(props, context) {
             <select
                 id={props.selectID}
                 onChange={selectChanged.bind(null, props)}
+                value={props.selectedValue}
             >
                 {getOptions(context.intl, props.options)}
             </select>
@@ -41,7 +42,8 @@ CalculationSelect.propTypes = {
     changeHandler: PropTypes.func.isRequired,
     labelKey: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
-    selectID: PropTypes.string.isRequired
+    selectID: PropTypes.string.isRequired,
+    selectedValue: PropTypes.string
 };
 
 CalculationSelect.contextTypes = {
