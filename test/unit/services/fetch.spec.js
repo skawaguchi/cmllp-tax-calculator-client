@@ -20,6 +20,7 @@ function teardown() {
 
 const suiteName = '# Fetch Service > fetch() > ';
 
+/* eslint-disable max-statements */
 test(`${suiteName} Request`, (t) => {
     setup();
 
@@ -57,7 +58,6 @@ test(`${suiteName} Response Success`, (t) => {
     });
 
 });
-
 
 test(`${suiteName} Response Error`, (t) => {
 
