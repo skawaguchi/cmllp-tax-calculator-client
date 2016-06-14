@@ -1,3 +1,4 @@
+import * as ReactRouter from 'react-router';
 import Chance from 'chance';
 import sinon from 'sinon';
 import test from 'tape';
@@ -10,6 +11,12 @@ let sandbox,
 function setup() {
     chance = new Chance();
     sandbox = sinon.sandbox.create();
+
+    // browserHistory doesn't exist in a shallow rest harness because it
+    // requires a DOM. So we need to resort to this.
+    ReactRouter.browserHistory = {
+        push: sandbox.spy()
+    };
 }
 
 function teardown() {
@@ -53,6 +60,7 @@ test('# Action Creator: Change Province', (t) => {
 
     t.equal(callerArguments.type, 'PROVINCE_CHANGED', 'should call the dispatch function with the normal income changed type');
     t.equal(callerArguments.province, fakeValue, 'should call the dispatch function with the value');
+    t.equal(ReactRouter.browserHistory.push.firstCall.args[0], `/tax-calculator/${fakeValue}`, 'should update the route');
 
     teardown();
 

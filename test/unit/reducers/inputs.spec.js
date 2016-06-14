@@ -45,7 +45,7 @@ test(`${suiteName} Given the action is to update the normal income`, (t) => {
     };
     const returnedState = inputsReducer(initialState, fakeAction);
 
-    t.deepEqual(returnedState.normalIncome, expectedValue, 'should set the normal income');
+    t.equal(returnedState.normalIncome, expectedValue, 'should set the normal income');
 
     t.end();
 });
@@ -63,7 +63,7 @@ test(`${suiteName} Given the action is to update the province`, (t) => {
     };
     const returnedState = inputsReducer(initialState, fakeAction);
 
-    t.deepEqual(returnedState.province, expectedValue, 'should set the province');
+    t.equal(returnedState.province, expectedValue, 'should set the province');
 
     t.end();
 });
@@ -82,7 +82,7 @@ test(`${suiteName} Given the action is to update the year`, (t) => {
     };
     const returnedState = inputsReducer(initialState, fakeAction);
 
-    t.deepEqual(returnedState.year, expectedValue, 'should set the year');
+    t.equal(returnedState.year, expectedValue, 'should set the year');
 
     t.end();
 });

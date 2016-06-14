@@ -1,3 +1,5 @@
+import {browserHistory} from 'react-router';
+
 import {performCalculation} from '../api/perform-calculation';
 
 export const changeInput = (id, value) => (dispatch) => {
@@ -36,6 +38,8 @@ export const getCalculations = () => async function (dispatch, getState) {
 };
 
 export const setProvince = (province) => (dispatch) => {
+    browserHistory.push(`/tax-calculator/${province}`);
+
     dispatch({
         province,
         type: 'PROVINCE_CHANGED'
