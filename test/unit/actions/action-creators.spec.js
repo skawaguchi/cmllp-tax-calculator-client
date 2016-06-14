@@ -18,7 +18,7 @@ function teardown() {
 
 /* eslint-disable max-statements */
 
-test('# Action Creator: Change Normal Income', (t) => {
+test('# Action Creator: Change Input', (t) => {
 
     setup();
 
@@ -33,6 +33,26 @@ test('# Action Creator: Change Normal Income', (t) => {
     t.equal(callerArguments.id, fakeID, 'should call the dispatch function with the id');
     t.equal(callerArguments.type, 'INPUT_CHANGED', 'should call the dispatch function with the normal income changed type');
     t.equal(callerArguments.value, fakeValue, 'should call the dispatch function with the value');
+
+    teardown();
+
+    t.end();
+
+});
+
+test('# Action Creator: Change Province', (t) => {
+
+    setup();
+
+    const fakeDispatch = sandbox.spy();
+    const fakeValue = chance.province();
+
+    actionCreators.setProvince(fakeValue)(fakeDispatch);
+
+    const callerArguments = fakeDispatch.firstCall.args[0];
+
+    t.equal(callerArguments.type, 'PROVINCE_CHANGED', 'should call the dispatch function with the normal income changed type');
+    t.equal(callerArguments.province, fakeValue, 'should call the dispatch function with the value');
 
     teardown();
 

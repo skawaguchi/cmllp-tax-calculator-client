@@ -37,10 +37,8 @@ export const getCalculations = () => async function (dispatch, getState) {
 
 export const setProvince = (province) => (dispatch) => {
     dispatch({
-        id: 'province',
-        isString: true,
-        type: 'INPUT_CHANGED',
-        value: province
+        province,
+        type: 'PROVINCE_CHANGED'
     });
 };
 

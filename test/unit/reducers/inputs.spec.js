@@ -57,10 +57,9 @@ test(`${suiteName} Given the action is to update the province`, (t) => {
     const expectedValue = chance.province();
     const initialState = getDefaultState().inputs;
     const fakeAction = {
-        id: 'province',
         isString: true,
-        type: 'INPUT_CHANGED',
-        value: expectedValue
+        type: 'PROVINCE_CHANGED',
+        province: expectedValue
     };
     const returnedState = inputsReducer(initialState, fakeAction);
 
