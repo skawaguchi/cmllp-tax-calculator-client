@@ -4,11 +4,10 @@ export function fetch(url, options) {
     const root = typeof global !== 'undefined' ? global : window;
 
     const combinedOptions = Object.assign({}, options, {
-        headers: new Headers({
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
-        }),
-        mode: 'cors'
+        }
     });
 
     return root.fetch(url, combinedOptions)

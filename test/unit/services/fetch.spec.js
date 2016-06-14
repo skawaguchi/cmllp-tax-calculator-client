@@ -32,11 +32,11 @@ test(`${suiteName} Request`, (t) => {
 
     fetchService.fetch(fakeURL, fakeOption).then(() => {});
 
-    const expectedHeaders = fetchMock.firstCall.args[1].headers._headers;
+    const expectedHeaders = fetchMock.firstCall.args[1].headers;
 
     t.equal(fetchMock.firstCall.args[0], fakeURL, 'should request a URL.');
-    t.deepEqual(expectedHeaders.accept, ['application/json'], 'should request with the accept json header');
-    t.deepEqual(expectedHeaders['content-type'], ['application/json'], 'should request with the content-type json header.');
+    t.equal(expectedHeaders.Accept, 'application/json', 'should request with the accept json header');
+    t.equal(expectedHeaders['Content-Type'], 'application/json', 'should request with the content-type json header.');
     t.equal(fetchMock.firstCall.args[1].someFakeOption, true, 'should pass on additional options.');
 
     teardown();
