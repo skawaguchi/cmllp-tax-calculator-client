@@ -4,6 +4,7 @@ import React from 'react';
 import sinon from 'sinon';
 import test from 'tape';
 
+import * as provinceListFactory from '../../../src/factories/province-list';
 import {CalculationControls} from '../../../src/views/CalculationControls';
 import Input from '../../../src/state/types/inputs';
 
@@ -21,7 +22,7 @@ function teardown() {
 
 /* eslint-disable max-statements */
 
-test('# CalculationControls > Given the control renders', (t) => {
+test('# CalculationControls > Given the control has rendered and the province param is defined', (t) => {
 
     setup();
 
@@ -54,14 +55,40 @@ test('# CalculationControls > Input Controls', (t) => {
         taxesAlreadyPaid: chance.floating(),
         year: chance.year()
     });
+    const fakeProvinceList = [{}];
+    const fakeContext = {
+        intl: {
+            locale: 'en'
+        }
+    };
+
+    sandbox.stub(provinceListFactory, 'getProvinceList')
+        .returns(fakeProvinceList);
 
     const component = shallow(
         <CalculationControls
             dispatch={() => {}}
             inputs={fakeInputs}
             params={{province: 'fake province'}}
-        />
+        />,
+        {
+            context: fakeContext
+        }
     );
+
+    t.test('## Province Control', (st) => {
+
+        const childComponent = component.find('CalculationSelect');
+
+        st.equal(childComponent.length, 1, 'should have a select control for the province');
+        st.equal(childComponent.prop('labelKey'), 'labels.province', 'should have a label for the selected province');
+        st.equal(childComponent.prop('selectID'), 'province-select-control', 'should have an id for the select controls so that the label will be connected to it');
+        st.deepEqual(childComponent.prop('options'), fakeProvinceList, 'should have a list of options');
+        st.equal(typeof childComponent.prop('changeHandler'), 'function', 'should have a change handler');
+
+        st.end();
+
+    });
 
     t.test('## Normal Income Input', (st) => {
 
