@@ -52,6 +52,10 @@ test('# CalculationOutput > Given the component has rendered', (t) => {
 
     testOutput(t, component, 'income after taxes', '.income-after-taxes', 'labels.incomeAfterTaxes', fakeCalculations.incomeAfterTaxes);
 
+    testOutput(t, component, 'average tax rate', '.average-tax-rate', 'labels.averageTaxRate', fakeCalculations.averageTaxRate);
+
+    testOutput(t, component, 'marginal tax rate', '.marginal-tax-rate', 'labels.marginalTaxRate', fakeCalculations.marginalTaxRate);
+
     t.end();
 
 });
