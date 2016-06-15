@@ -23,7 +23,10 @@ module.exports = {
                 include: path.join(__dirname, 'src'),
                 loaders: ['react-hot', 'babel']
             },
-            {test: /\.scss$/, loaders: ['style', 'css', 'sass', 'postcss']}
+            {
+                test: /\.scss$/,
+                loaders: ['style', 'css', 'sass', 'postcss']
+            }
         ]
     },
     plugins: [
