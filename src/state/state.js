@@ -12,9 +12,11 @@ const State = t.struct({
 export function getDefaultState() {
     return State({
         calculations: {
+            averageTaxRate: 0,
             incomeAfterTaxes: 0,
             federalEligibleDividendTaxCredit: 0,
             federalIneligibleDividendTaxCredit: 0,
+            marginalTaxRate: 0,
             netTaxPayable: 0,
             provincialEligibleDividendTaxCredit: 0,
             provincialIneligibleDividendTaxCredit: 0,

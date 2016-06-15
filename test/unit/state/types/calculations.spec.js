@@ -11,9 +11,11 @@ function setup() {
 
 function getFakeCalculations() {
     return {
-        incomeAfterTaxes: chance.floating(),
+        averageTaxRate: chance.floating({min: 0, max: 1}),
         federalEligibleDividendTaxCredit: chance.floating(),
         federalIneligibleDividendTaxCredit: chance.floating(),
+        incomeAfterTaxes: chance.floating(),
+        marginalTaxRate: chance.floating({min: 0, max: 1}),
         netTaxPayable: chance.floating(),
         provincialEligibleDividendTaxCredit: chance.floating(),
         provincialIneligibleDividendTaxCredit: chance.floating(),
@@ -35,17 +37,21 @@ test('# Calculations Type', (t) => {
 
     t.test('# Calculations Type > Structure', (st) => {
 
-        st.plan(12);
+        st.plan(14);
 
         const fakeCalculations = getFakeCalculations();
 
         const calculations = calculationsType(fakeCalculations);
 
-        st.equal(calculations.incomeAfterTaxes, fakeCalculations.incomeAfterTaxes, 'should match the income after taxes');
+        st.equal(calculations.averageTaxRate, fakeCalculations.averageTaxRate, 'should match the average tax rate');
 
         st.equal(calculations.federalEligibleDividendTaxCredit, fakeCalculations.federalEligibleDividendTaxCredit, 'should match the federal eligible dividend tax credit');
 
         st.equal(calculations.federalIneligibleDividendTaxCredit, fakeCalculations.federalIneligibleDividendTaxCredit, 'should match the federal ineligible dividend tax credit');
+
+        st.equal(calculations.incomeAfterTaxes, fakeCalculations.incomeAfterTaxes, 'should match the income after taxes');
+
+        st.equal(calculations.marginalTaxRate, fakeCalculations.marginalTaxRate, 'should match the marginal tax rate');
 
         st.equal(calculations.netTaxPayable, fakeCalculations.netTaxPayable, 'should match the net tax payable');
 

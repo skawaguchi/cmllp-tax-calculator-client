@@ -40,11 +40,15 @@ test('# State', (t) => {
 
     t.test('# State > Given the default state', (st) => {
 
-        st.equal(expectedState.calculations.incomeAfterTaxes, 0, 'should have income after taxes of 0');
+        st.equal(expectedState.calculations.averageTaxRate, 0, 'should have average tax rate of 0');
 
         st.equal(expectedState.calculations.federalEligibleDividendTaxCredit, 0, 'should have federal eligible dividend tax credit of 0');
 
         st.equal(expectedState.calculations.federalIneligibleDividendTaxCredit, 0, 'should have federal ineligible dividend tax credit of 0');
+
+        st.equal(expectedState.calculations.incomeAfterTaxes, 0, 'should have income after taxes of 0');
+
+        st.equal(expectedState.calculations.marginalTaxRate, 0, 'should have marginal tax rate of 0');
 
         st.equal(expectedState.calculations.netTaxPayable, 0, 'should have net payable of 0');
 

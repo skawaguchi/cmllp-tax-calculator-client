@@ -8,9 +8,11 @@ function getFakeCalcuations() {
     const chance = new Chance();
 
     return {
-        incomeAfterTaxes: chance.floating(),
+        averageTaxRate: chance.floating({min: 0, max: 1}),
         federalEligibleDividendTaxCredit: chance.floating(),
         federalIneligibleDividendTaxCredit: chance.floating(),
+        incomeAfterTaxes: chance.floating(),
+        marginalTaxRate: chance.floating({min: 0, max: 1}),
         netTaxPayable: chance.floating(),
         provincialEligibleDividendTaxCredit: chance.floating(),
         provincialIneligibleDividendTaxCredit: chance.floating(),

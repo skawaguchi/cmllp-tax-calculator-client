@@ -1,11 +1,13 @@
 export default {
     'labels.appTitle': 'Income Tax Calculator',
+    'labels.averageTaxRate': 'Average Tax Rate',
     'labels.capitalGains': 'Capital Gains',
     'labels.eligibleDividends': 'Eligible Dividends',
     'labels.federalEligibleDividendTaxCredit': 'Federal Eligible Dividend Tax Credit',
     'labels.federalIneligibleDividendTaxCredit': 'Federal Ineligible Dividend Tax Credit',
     'labels.incomeAfterTaxes': 'Income After Taxes',
     'labels.ineligibleDividends': 'Ineligible Dividends',
+    'labels.marginalTaxRate': 'Marginal Tax Rate',
     'labels.netTaxPayable': 'Net Tax Payable',
     'labels.normalIncome': 'Normal Income',
     'labels.province': 'Province',

@@ -1,9 +1,11 @@
 import t from 'tcomb';
 
 const Calculations = t.struct({
+    averageTaxRate: t.Number,
     federalEligibleDividendTaxCredit: t.Number,
     federalIneligibleDividendTaxCredit: t.Number,
     incomeAfterTaxes: t.Number,
+    marginalTaxRate: t.Number,
     netTaxPayable: t.Number,
     provincialEligibleDividendTaxCredit: t.Number,
     provincialIneligibleDividendTaxCredit: t.Number,
