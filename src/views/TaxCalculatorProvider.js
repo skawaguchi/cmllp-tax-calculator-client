@@ -27,6 +27,7 @@ class TaxCalculatorProvider extends Component {
 
         if (process.env.NODE_ENV !== 'production') {
             const showDevTools = require('../show-dev-tools').default;
+
             showDevTools(store);
         }
 

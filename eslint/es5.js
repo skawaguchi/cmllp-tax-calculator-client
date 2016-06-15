@@ -99,7 +99,7 @@ module.exports = {
         "no-octal-escape": 2,
         "no-param-reassign": 2,
         "no-plusplus": [2, {allowForLoopAfterthoughts: true}],
-        "no-process-env": 2,
+        "no-process-env": 0,
         "no-proto": 2,
         "no-redeclare": 2,
         "no-regex-spaces": 2,
