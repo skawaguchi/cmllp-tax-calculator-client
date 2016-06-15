@@ -25,6 +25,12 @@ class TaxCalculatorProvider extends Component {
             translations
         });
 
+        if (process.env.NODE_ENV !== 'production') {
+            const showDevTools = require('../show-dev-tools').default;
+
+            showDevTools(store);
+        }
+
     }
 
     render() {

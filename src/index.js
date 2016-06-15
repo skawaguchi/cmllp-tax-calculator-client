@@ -1,10 +1,5 @@
-import 'babel-polyfill';
-import React from 'react';
-import {render} from 'react-dom';
-
-import TaxCalculatorProvider from './views/TaxCalculatorProvider';
-
-render(
-    <TaxCalculatorProvider />,
-    document.getElementById('tax-calculator-app')
-);
+if (process.env.NODE_ENV === 'production') {
+    module.exports = require('./containers/Root');
+} else {
+    module.exports = require('./containers/Root.dev');
+}
