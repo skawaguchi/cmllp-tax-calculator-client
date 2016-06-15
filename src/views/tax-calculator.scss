@@ -24,7 +24,11 @@ h1 {
   display: flex;
   list-style: none;
   padding-left: 0;
+}
 
+#output-container,
+#input-container {
+  flex: 1;
 }
 
 .calculation-output {
