@@ -54,6 +54,7 @@ h1 {
     flex: 1;
     line-height: 32px;
     padding-left: 10px;
+    padding-right: 10px;
   }
 
   input {
@@ -61,10 +62,11 @@ h1 {
     border-top-width: 0;
     border-left: 0;
     padding-left: 10px;
+    text-align: right;
   }
 }
 
-.calculation-input:first-child {
+.normal-income-input {
   label,
   input {
     border-top-width: 1px;
