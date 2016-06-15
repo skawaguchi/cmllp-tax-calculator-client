@@ -7,9 +7,12 @@ import test from 'tape';
 import * as provinceListFactory from '../../../src/factories/province-list';
 import {CalculationControls} from '../../../src/views/CalculationControls';
 import Input from '../../../src/state/types/inputs';
+import * as actionCreators from '../../../src/actions/action-creators';
 
 let sandbox,
     chance;
+
+const suiteName = '# CalculationControls >';
 
 function setup() {
     chance = new Chance();
@@ -22,7 +25,7 @@ function teardown() {
 
 /* eslint-disable max-statements */
 
-test('# CalculationControls > Given the control has rendered and the province param is defined', (t) => {
+test(`${suiteName} Given the control has rendered and the province param is defined`, (t) => {
 
     setup();
 
@@ -41,8 +44,7 @@ test('# CalculationControls > Given the control has rendered and the province pa
     t.end();
 });
 
-test('# CalculationControls > Input Controls', (t) => {
-
+function setupInputTest() {
     setup();
 
     const fakeInputs = Input({
@@ -76,99 +78,135 @@ test('# CalculationControls > Input Controls', (t) => {
         }
     );
 
-    t.test('## Province Control', (st) => {
+    return {
+        component,
+        fakeProvinceList,
+        fakeInputs
+    };
+}
 
-        const childComponent = component.find('CalculationSelect');
+test(`${suiteName} ## Province Drop-Down`, (t) => {
 
-        st.equal(childComponent.length, 1, 'should have a select control for the province');
-        st.equal(childComponent.prop('labelKey'), 'labels.province', 'should have a label for the selected province');
-        st.equal(childComponent.prop('selectID'), 'province-select-control', 'should have an id for the select controls so that the label will be connected to it');
-        st.deepEqual(childComponent.prop('options'), fakeProvinceList, 'should have a list of options');
-        st.equal(typeof childComponent.prop('changeHandler'), 'function', 'should have a change handler');
+    const setupItems = setupInputTest();
 
-        st.end();
+    const childComponent = setupItems.component.find('CalculationSelect');
 
-    });
-
-    t.test('## Normal Income Input', (st) => {
-
-        const childComponent = component.find('.normal-income-input');
-
-        st.equal(childComponent.length, 1, 'should have an input');
-        st.equal(childComponent.prop('className'), 'normal-income-input', 'should set the className');
-        st.equal(childComponent.prop('inputID'), 'normalIncome', 'should set the flag for calculations');
-        st.equal(childComponent.prop('inputValue'), fakeInputs.normalIncome, 'should set the value');
-        st.equal(childComponent.prop('labelKey'), 'labels.normalIncome', 'should set the key for localized labels');
-
-        st.end();
-    });
-
-    t.test('## Capital Gains Input', (st) => {
-
-        const childComponent = component.find('.capital-gains-input');
-
-        st.equal(childComponent.length, 1, 'should have an input');
-        st.equal(childComponent.prop('className'), 'capital-gains-input', 'should set the className');
-        st.equal(childComponent.prop('inputID'), 'capitalGains', 'should set the flag for calculations');
-        st.equal(childComponent.prop('inputValue'), fakeInputs.capitalGains, 'should set the value');
-        st.equal(childComponent.prop('labelKey'), 'labels.capitalGains', 'should set the key for localized labels');
-
-        st.end();
-    });
-
-    t.test('## Eligible Dividends Input', (st) => {
-
-        const childComponent = component.find('.eligible-dividends-input');
-
-        st.equal(childComponent.length, 1, 'should have an input');
-        st.equal(childComponent.prop('className'), 'eligible-dividends-input', 'should set the className');
-        st.equal(childComponent.prop('inputID'), 'eligibleDividends', 'should set the flag for calculations');
-        st.equal(childComponent.prop('inputValue'), fakeInputs.eligibleDividends, 'should set the value');
-        st.equal(childComponent.prop('labelKey'), 'labels.eligibleDividends', 'should set the key for localized labels');
-
-        st.end();
-    });
-
-    t.test('## Ineligible Dividends Input', (st) => {
-
-        const childComponent = component.find('.ineligible-dividends-input');
-
-        st.equal(childComponent.length, 1, 'should have an input');
-        st.equal(childComponent.prop('className'), 'ineligible-dividends-input', 'should set the className');
-        st.equal(childComponent.prop('inputID'), 'ineligibleDividends', 'should set the flag for calculations');
-        st.equal(childComponent.prop('inputValue'), fakeInputs.ineligibleDividends, 'should set the value');
-        st.equal(childComponent.prop('labelKey'), 'labels.ineligibleDividends', 'should set the key for localized labels');
-
-        st.end();
-    });
-
-    t.test('## RRSP Contributions Input', (st) => {
-
-        const childComponent = component.find('.rrsp-contributions-input');
-
-        st.equal(childComponent.length, 1, 'should have an input');
-        st.equal(childComponent.prop('className'), 'rrsp-contributions-input', 'should set the className');
-        st.equal(childComponent.prop('inputID'), 'rrspContributions', 'should set the flag for calculations');
-        st.equal(childComponent.prop('inputValue'), fakeInputs.rrspContributions, 'should set the value');
-        st.equal(childComponent.prop('labelKey'), 'labels.rrspContributions', 'should set the key for localized labels');
-
-        st.end();
-    });
-
-    t.test('## Taxes Already Paid Input', (st) => {
-
-        const childComponent = component.find('.taxes-already-paid-input');
-
-        st.equal(childComponent.length, 1, 'should have an input');
-        st.equal(childComponent.prop('className'), 'taxes-already-paid-input', 'should set the className');
-        st.equal(childComponent.prop('inputID'), 'taxesAlreadyPaid', 'should set the flag for calculations');
-        st.equal(childComponent.prop('inputValue'), fakeInputs.taxesAlreadyPaid, 'should set the value');
-        st.equal(childComponent.prop('labelKey'), 'labels.taxesAlreadyPaid', 'should set the key for localized labels');
-
-        st.end();
-    });
+    t.equal(childComponent.length, 1, 'should have a select control for the province');
+    t.equal(childComponent.prop('labelKey'), 'labels.province', 'should have a label for the selected province');
+    t.equal(childComponent.prop('selectID'), 'province-select-control', 'should have an id for the select controls so that the label will be connected to it');
+    t.deepEqual(childComponent.prop('options'), setupItems.fakeProvinceList, 'should have a list of options');
+    t.equal(typeof childComponent.prop('changeHandler'), 'function', 'should have a change handler');
 
     teardown();
 
     t.end();
+
+});
+
+test('## Province Drop-Down > when the province is changed', (t) => {
+    const setupItems = setupInputTest();
+
+    const childComponent = setupItems.component.find('CalculationSelect');
+    const calculationsStub = sandbox.stub(actionCreators, 'getCalculations');
+    const provinceStub = sandbox.stub(actionCreators, 'setProvince');
+
+    t.equal(calculationsStub.callCount, 0, 'should not have called calculations');
+    t.equal(provinceStub.callCount, 0, 'should not have called change province');
+
+    childComponent.prop('changeHandler')();
+
+    t.equal(calculationsStub.callCount, 1, 'should update the calculations');
+    t.equal(provinceStub.callCount, 1, 'should update the province');
+
+    teardown();
+
+    t.end();
+
+});
+
+function testInput(t, selector, key) {
+    const setupItems = setupInputTest();
+
+    const childComponent = setupItems.component.find(`.${selector}`);
+
+    t.equal(childComponent.length, 1, 'should have an input');
+    t.equal(childComponent.prop('className'), selector, 'should set the className');
+    t.equal(childComponent.prop('inputID'), key, 'should set the flag for calculations');
+    t.equal(childComponent.prop('inputValue'), setupItems.fakeInputs[key], 'should set the value');
+    t.equal(childComponent.prop('labelKey'), `labels.${key}`, 'should set the key for localized labels');
+
+    teardown();
+
+    t.end();
+}
+
+test(`${suiteName} Normal Income Input`, (t) => {
+    testInput(t, 'normal-income-input', 'normalIncome');
+});
+
+test(`${suiteName} Capital Gains Input`, (t) => {
+    testInput(t, 'capital-gains-input', 'capitalGains');
+});
+
+test(`${suiteName} > Eligible Dividends Input`, (t) => {
+    testInput(t, 'eligible-dividends-input', 'eligibleDividends');
+});
+
+test(`${suiteName} > Ineligible Dividends Input`, (t) => {
+    testInput(t, 'ineligible-dividends-input', 'ineligibleDividends');
+});
+
+test(`${suiteName} > RRSP Contributions Input`, (t) => {
+    testInput(t, 'rrsp-contributions-input', 'rrspContributions');
+});
+
+test(`${suiteName} > Taxes Already Paid Input`, (t) => {
+    testInput(t, 'taxes-already-paid-input', 'taxesAlreadyPaid');
+});
+
+function testInputChange(t, selector) {
+    const setupItems = setupInputTest();
+
+    const childComponent = setupItems.component.find(selector);
+    const fakeDispatch = sandbox.spy();
+    const fakeValue = chance.floating();
+
+    const calculationsStub = sandbox.stub(actionCreators, 'getCalculations');
+    const inputStub = sandbox.stub(actionCreators, 'changeInput');
+
+    t.equal(calculationsStub.callCount, 0, 'should not have called calculations');
+    t.equal(inputStub.callCount, 0, 'should not have called the input change');
+
+    childComponent.prop('changeHandler')(fakeDispatch, fakeValue);
+
+    t.equal(calculationsStub.callCount, 1, 'should update the calculations');
+    t.equal(inputStub.firstCall.args[1], fakeValue, 'should update the input value');
+
+    teardown();
+
+    t.end();
+}
+
+test(`${suiteName} Normal Income Input > when the input is changed`, (t) => {
+    testInputChange(t, '.normal-income-input');
+});
+
+test(`${suiteName} Capital Gains Input > when the input is changed`, (t) => {
+    testInputChange(t, '.capital-gains-input');
+});
+
+test(`${suiteName} Eligible Dividends Input > when the input is changed`, (t) => {
+    testInputChange(t, '.normal-income-input');
+});
+
+test(`${suiteName} Ineligible Dividends Input > when the input is changed`, (t) => {
+    testInputChange(t, '.capital-gains-input');
+});
+
+test(`${suiteName} RRSP Contributions Input > when the input is changed`, (t) => {
+    testInputChange(t, '.rrsp-contributions-input');
+});
+
+test(`${suiteName} Taxes Already Paid Input > when the input is changed`, (t) => {
+    testInputChange(t, '.taxes-already-paid-input');
 });

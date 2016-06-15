@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import CalculationInput from './CalculationInput';
 import CalculationSelect from './CalculationSelect';
-import {intlShape, FormattedMessage} from 'react-intl';
+import {intlShape} from 'react-intl';
 
 import {
     changeInput,
@@ -18,16 +18,14 @@ import {processLocation, getProvince} from '../services/ip-location';
 
 const canadaCountryCode = 'CA';
 
-function submitClicked(dispatch) {
-    dispatch(getCalculations());
-}
-
 function inputChanged(dispatch, id, value) {
     dispatch(changeInput(id, value));
+    dispatch(getCalculations());
 }
 
 function provinceChanged(dispatch, event, province) {
     dispatch(setProvince(province));
+    dispatch(getCalculations());
 }
 
 export class CalculationControls extends Component {
@@ -119,15 +117,6 @@ export class CalculationControls extends Component {
                     labelKey='labels.taxesAlreadyPaid'
                 />
 
-                <button
-                    className='submit-button'
-                    type='submit'
-                    onClick={submitClicked.bind(null, this.props.dispatch)}
-                >
-                    <FormattedMessage
-                        id='labels.submit'
-                    />
-                </button>
             </section>
         );
     }
