@@ -11,8 +11,9 @@
     "dev": "nodemon ./server",
     "dev:react": "node ./dev-server",
     "eslint": "eslint './{test/unit,src}/**/*.js'",
+    "report": "nyc report --reporter=html",
     "start": "node ./server",
-    "test": "ava ./test/unit/**/*.test.js -S ./src/**/*.test.js --fail-fast",
+    "test": "nyc ava ./test/unit/**/*.test.js -S ./src/**/*.test.js --fail-fast",
     "test:watch": "ava ./test/unit/**/*.test.js -S ./src/**/*.test.js --fail-fast --watch",
     "verify": "npm run eslint && npm run test"
   },
@@ -60,6 +61,7 @@
     "eslint-plugin-react": "^5.1.1",
     "node-sass": "^3.7.0",
     "nodemon": "^1.9.2",
+    "nyc": "^6.6.1",
     "postcss": "^5.0.21",
     "postcss-loader": "^0.9.1",
     "precss": "^1.4.0",
