@@ -8,7 +8,7 @@ import * as actionCreators from '../../../src/actions/action-creators';
 let sandbox,
     chance;
 
-test.before(() => {
+test.beforeEach(() => {
     chance = new Chance();
     sandbox = sinon.sandbox.create();
 
@@ -19,7 +19,7 @@ test.before(() => {
     };
 });
 
-test.after('Cleanup', () => {
+test.afterEach(() => {
     sandbox.restore();
 });
 
@@ -53,5 +53,19 @@ test('should dispatch the province changed action', (t) => {
     t.is(callerArguments.type, 'PROVINCE_CHANGED');
     t.is(callerArguments.province, fakeValue);
     t.is(ReactRouter.browserHistory.push.firstCall.args[0], `/tax-calculator/${fakeValue}`);
+
+});
+
+test('should dispatch the year changed action', (t) => {
+
+    const fakeDispatch = sandbox.spy();
+    const fakeValue = chance.year();
+
+    actionCreators.setYear(fakeValue)(fakeDispatch);
+
+    const callerArguments = fakeDispatch.firstCall.args[0];
+
+    t.is(callerArguments.type, 'YEAR_CHANGED');
+    t.is(callerArguments.year, fakeValue);
 
 });

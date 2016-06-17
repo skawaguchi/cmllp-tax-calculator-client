@@ -48,10 +48,8 @@ export const setProvince = (province) => (dispatch) => {
 
 export const setYear = (year) => (dispatch) => {
     dispatch({
-        id: 'year',
-        isString: true,
         type: 'YEAR_CHANGED',
-        value: year
+        year: year
     });
 };
 
