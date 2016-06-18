@@ -10,29 +10,25 @@ let chance,
     sandbox,
     fetchStub;
 
-test.before(() => {
+test.beforeEach(() => {
     chance = new Chance();
     sandbox = sinon.sandbox.create();
 
-    fetchStub = sandbox.stub(fetchService, 'fetch')
-        .returns({
-            then: () => ({
-                catch: () => {}
-            })
-        });
+    fetchStub = sandbox.stub(fetchService, 'fetch');
 });
 
-test.after(() => {
+test.afterEach(() => {
     sandbox.restore();
 });
 
 test('should call the location service', (t) => {
-    getProvince();
+    fetchStub.returns(Promise.resolve({json: () => {}}));
 
-    t.is(fetchStub.firstCall.args[0], 'http://ipinfo.io');
+    getProvince();
+    t.is(fetchStub.lastCall.args[0], 'http://ipinfo.io');
 });
 
-test('should call the location service', (t) => {
+test('should provide a promise for the location call', (t) => {
     const fakeProvince = chance.province();
     const fakeResponse = {
         json: () => ({
@@ -51,20 +47,19 @@ test('should call the location service', (t) => {
     t.true(returnValue instanceof Promise);
 });
 
-test('should return the json promise', (t) => {
+test('should return the json promise when the promise resolves', async (t) => {
+
     const fakeResponse = {
-        json: () => ({
-            then: () => ({
-                catch: () => {
-                }
-            })
-        }),
+        json: sandbox.spy(),
         ok: true
     };
 
     fetchStub.returns(Promise.resolve(fakeResponse));
+    
+    t.is(fakeResponse.json.callCount, 0);
 
-    const returnValue = getProvince();
+    await getProvince();
 
-    t.true(returnValue instanceof Promise);
+    t.is(fakeResponse.json.callCount, 1);
+
 });
