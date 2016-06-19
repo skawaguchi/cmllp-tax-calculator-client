@@ -62,7 +62,6 @@ test('should render the component', (t) => {
 
 test('should call the callback when its changed', (t) => {
     const testItems = setupTests();
-
     const fakeEvent = {
         target: {
             value: testItems.fakeValue

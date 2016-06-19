@@ -9,7 +9,6 @@ let sandbox,
 test.beforeEach(() => {
     chance = new Chance();
     sandbox = sinon.sandbox.create();
-
 });
 
 test.afterEach(() => {
@@ -37,7 +36,7 @@ test('should make the fetch call', (t) => {
     t.is(fetchMock.lastCall.args[1].someFakeOption, true);
 });
 
-test('should pass the successful fetch back to the consumer', async function (t) {
+test.serial('should pass the successful fetch back to the consumer', async function (t) {
     const fakeResponse = {ok: true};
 
     const fetchMock = sandbox.mock(global)
@@ -48,12 +47,15 @@ test('should pass the successful fetch back to the consumer', async function (t)
     t.is(await fetchService.fetch(), fakeResponse);
 });
 
-// test('should pass the failure back to the consumer', async function (t) {
-//     const fakeResponse = {ok: false};
-//
-//     fetchMock.returns(Promise.resolve(fakeResponse));
-//
-//     const reason = await t.throws(fetchService.fetch());
-//     console.log('CCCC', reason);
-//     t.is(reason, fakeResponse);
-// });
+test.serial('should pass the failure back to the consumer', async function (t) {
+    const fakeResponse = {ok: false};
+
+    const fetchMock = sandbox.mock(global)
+        .expects('fetch');
+
+    fetchMock.returns(Promise.resolve(fakeResponse));
+
+    const reason = await t.throws(fetchService.fetch());
+
+    t.is(reason, fakeResponse);
+});

@@ -36,21 +36,10 @@ export class CalculationControls extends Component {
 
     componentDidMount() {
 
-        const provinceParams = this.props.params.province;
-
         this.props.dispatch(setYear(moment().format('YYYY')));
 
-        if (provinceParams) {
-            this.props.dispatch(setProvince(this.props.params.province));
-        } else {
-            getProvince().then((location) => {
-                const processedLocation = processLocation(location);
+        this.props.dispatch(setProvince(this.props.params.province));
 
-                if (processedLocation.country === canadaCountryCode) {
-                    this.props.dispatch(setProvince(processedLocation.region));
-                }
-            });
-        }
     }
 
     render() {

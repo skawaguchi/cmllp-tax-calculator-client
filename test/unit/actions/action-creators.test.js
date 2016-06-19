@@ -3,6 +3,7 @@ import Chance from 'chance';
 import sinon from 'sinon';
 import test from 'ava';
 
+import * as performCalculationService from '../../../src/api/perform-calculation';
 import * as actionCreators from '../../../src/actions/action-creators';
 
 let sandbox,
@@ -19,7 +20,7 @@ test.beforeEach(() => {
     };
 });
 
-test.afterEach(() => {
+test.afterEach.always('cleanup', () => {
     sandbox.restore();
 });
 
@@ -69,3 +70,63 @@ test('should dispatch the year changed action', (t) => {
     t.is(callerArguments.year, fakeValue);
 
 });
+
+test.serial('should get the calculations', async (t) => {
+    const fakeDispatch = sandbox.spy();
+    const fakeState = {};
+    const fakeCalculations = {};
+    const fakeGetState = () => {
+        return fakeState;
+    };
+    const fakeResponse = {
+        json: () => {
+            return Promise.resolve(fakeCalculations)
+        },
+        ok: true
+    };
+
+    sandbox.stub(performCalculationService, 'performCalculation')
+        .returns(Promise.resolve(fakeResponse));
+
+    t.is(fakeDispatch.callCount, 0);
+
+    await actionCreators.getCalculations()(fakeDispatch, fakeGetState);
+    t.is(fakeDispatch.callCount, 1);
+    t.deepEqual(fakeDispatch.lastCall.args[0], {
+        calculations: fakeCalculations,
+        type: 'CALCULATION_LOADED'
+    })
+});
+
+test.serial('should throw an error when the calculations fail', async (t) => {
+    const fakeDispatch = () => {};
+    const fakeState = {};
+    const fakeGetState = () => {
+        return fakeState;
+    };
+    const fakeError = 'fake error';
+
+    sandbox.stub(performCalculationService, 'performCalculation')
+        .returns(Promise.reject(fakeError));
+
+    const reason = await t.throws(actionCreators.getCalculations()(fakeDispatch, fakeGetState));
+    t.is(reason, fakeError);
+});
+
+test.serial('should throw an error when the calculation request fails', async (t) => {
+    const fakeDispatch = () => {};
+    const fakeState = {};
+    const fakeGetState = () => {
+        return fakeState;
+    };
+    const fakeResponse = {
+        ok: false
+    };
+
+    sandbox.stub(performCalculationService, 'performCalculation')
+        .returns(Promise.resolve(fakeResponse));
+
+    const reason = await t.throws(actionCreators.getCalculations()(fakeDispatch, fakeGetState));
+    t.is(reason, 'Calculation request failed.');
+});
+

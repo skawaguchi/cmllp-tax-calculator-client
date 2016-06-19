@@ -1,7 +1,6 @@
 import 'isomorphic-fetch';
 
 export function fetch(url, options) {
-    const root = typeof global !== 'undefined' ? global : window;
 
     const combinedOptions = Object.assign({}, options, {
         headers: {
@@ -10,7 +9,7 @@ export function fetch(url, options) {
         }
     });
 
-    return root.fetch(url, combinedOptions)
+    return global.fetch(url, combinedOptions)
         .then((response) => {
             if (!response.ok) {
                 return Promise.reject(response);

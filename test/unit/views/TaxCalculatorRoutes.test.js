@@ -10,11 +10,11 @@ import * as RouteFactory from '../../../src/factories/routes';
 
 let sandbox;
 
-test.before(() => {
+test.beforeEach(() => {
     sandbox = sinon.sandbox.create();
 });
 
-test.after(() => {
+test.afterEach(() => {
     sandbox.restore();
 });
 
@@ -31,10 +31,14 @@ function setupTest() {
     };
 }
 
-test('should set up the router', (t) => {
+test('should set up the router with the routes from the route factory', (t) => {
     const testItems = setupTest();
 
-    t.is(testItems.component.find('Router').length, 1);
     t.is(testItems.component.find('Router').prop('routes'), testItems.fakeRoutes);
+});
+
+test('should set up the router to use browser history', (t) => {
+    const testItems = setupTest();
+
     t.is(testItems.component.find('Router').prop('history'), browserHistory);
 });

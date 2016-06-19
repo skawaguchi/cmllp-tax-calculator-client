@@ -1,10 +1,12 @@
 import Chance from 'chance';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
 import test from 'ava';
 
 import {intlShape} from 'react-intl';
+import '../../utils/dom-setup';
+import {fn as momentService} from 'moment';
 
 import * as provinceListFactory from '../../../src/factories/province-list';
 import {CalculationControls} from '../../../src/views/CalculationControls';
@@ -19,6 +21,20 @@ let sandbox,
     calculationsStub,
     inputsStub;
 
+function getFakeIntl() {
+    return {
+        formatDate: () => {},
+        formatHTMLMessage: () => {},
+        formatNumber: () => {},
+        formatPlural: () => {},
+        formatRelative: () => {},
+        formatTime: () => {},
+        now: () => {},
+        formatMessage: () => {},
+        locale: 'en'
+    }
+}
+
 test.beforeEach(() => {
     chance = new Chance();
     sandbox = sinon.sandbox.create();
@@ -28,7 +44,7 @@ test.afterEach(() => {
     sandbox.restore();
 });
 
-test('should have  a container for controls', (t) => {
+test('should render the component', (t) => {
     component = shallow(
         <CalculationControls
             dispatch={() => {}}
@@ -38,6 +54,36 @@ test('should have  a container for controls', (t) => {
     );
 
     t.is(component.find('.calculation-controls').length, 1);
+});
+
+test('should update the province and year in the store', (t) => {
+
+    const provinceStub = sandbox.stub(actionCreators, 'setProvince');
+    const yearStub = sandbox.stub(actionCreators, 'setYear');
+    const fakeYear = chance.year();
+
+    sandbox.stub(momentService, 'format')
+        .returns(fakeYear);
+
+    const fakeIntl = getFakeIntl();
+    const fakeContext = {
+        intl: fakeIntl
+    };
+    const fakeProvince = chance.province();
+
+    component = mount(
+        <CalculationControls
+            dispatch={() => {}}
+            inputs={{}}
+            params={{province: fakeProvince}}
+        />,
+        {
+            context: fakeContext
+        }
+    );
+
+    t.is(provinceStub.firstCall.args[0], fakeProvince);
+    t.is(yearStub.firstCall.args[0], fakeYear);
 });
 
 function setupInputTest() {
