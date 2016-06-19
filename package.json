@@ -27,6 +27,7 @@
     },
     "concurrency": 10,
     "require": [
+      "babel-polyfill",
       "babel-register",
       "ignore-styles"
     ]
