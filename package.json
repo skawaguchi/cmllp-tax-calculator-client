@@ -32,6 +32,11 @@
       "ignore-styles"
     ]
   },
+  "config": {
+    "ghooks": {
+      "pre-push": "npm run verify"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/skawaguchi/cmllp-tax-calculator-client.git"
@@ -60,6 +65,7 @@
     "enzyme": "^2.3.0",
     "eslint": "^2.11.0",
     "eslint-plugin-react": "^5.1.1",
+    "ghooks": "^1.2.4",
     "node-sass": "^3.7.0",
     "nodemon": "^1.9.2",
     "nyc": "^6.6.1",
