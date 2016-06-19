@@ -121,6 +121,5 @@ test.serial('should throw an error when the calculation request fails', async fu
 
     const reason = await t.throws(actionCreators.getCalculations()(fakeDispatch, fakeGetState));
 
-    t.is(reason, new Error('Calculation request failed.'));
+    t.deepEqual(reason, new Error('Calculation request failed.'));
 });
-
