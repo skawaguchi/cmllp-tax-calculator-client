@@ -71,17 +71,13 @@ test('should dispatch the year changed action', (t) => {
 
 });
 
-test.serial('should get the calculations', async (t) => {
+test.serial('should get the calculations', async function (t) {
     const fakeDispatch = sandbox.spy();
     const fakeState = {};
     const fakeCalculations = {};
-    const fakeGetState = () => {
-        return fakeState;
-    };
+    const fakeGetState = () => fakeState;
     const fakeResponse = {
-        json: () => {
-            return Promise.resolve(fakeCalculations)
-        },
+        json: () => Promise.resolve(fakeCalculations),
         ok: true
     };
 
@@ -95,30 +91,27 @@ test.serial('should get the calculations', async (t) => {
     t.deepEqual(fakeDispatch.lastCall.args[0], {
         calculations: fakeCalculations,
         type: 'CALCULATION_LOADED'
-    })
+    });
 });
 
-test.serial('should throw an error when the calculations fail', async (t) => {
+test.serial('should throw an error when the calculations fail', async function (t) {
     const fakeDispatch = () => {};
     const fakeState = {};
-    const fakeGetState = () => {
-        return fakeState;
-    };
+    const fakeGetState = () => fakeState;
     const fakeError = 'fake error';
 
     sandbox.stub(performCalculationService, 'performCalculation')
         .returns(Promise.reject(fakeError));
 
     const reason = await t.throws(actionCreators.getCalculations()(fakeDispatch, fakeGetState));
+
     t.is(reason, fakeError);
 });
 
-test.serial('should throw an error when the calculation request fails', async (t) => {
+test.serial('should throw an error when the calculation request fails', async function (t) {
     const fakeDispatch = () => {};
     const fakeState = {};
-    const fakeGetState = () => {
-        return fakeState;
-    };
+    const fakeGetState = () => fakeState;
     const fakeResponse = {
         ok: false
     };
@@ -127,6 +120,7 @@ test.serial('should throw an error when the calculation request fails', async (t
         .returns(Promise.resolve(fakeResponse));
 
     const reason = await t.throws(actionCreators.getCalculations()(fakeDispatch, fakeGetState));
-    t.is(reason, 'Calculation request failed.');
+
+    t.is(reason, new Error('Calculation request failed.'));
 });
 

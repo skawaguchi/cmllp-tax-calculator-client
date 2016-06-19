@@ -32,7 +32,7 @@ function getFakeIntl() {
         now: () => {},
         formatMessage: () => {},
         locale: 'en'
-    }
+    };
 }
 
 test.beforeEach(() => {

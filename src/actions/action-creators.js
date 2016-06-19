@@ -28,7 +28,7 @@ export const getCalculations = () => async function (dispatch, getState) {
                         throw error;
                     });
             } else {
-                throw 'Calculation request failed.';
+                throw new Error('Calculation request failed.');
             }
         })
         .catch((error) => {
@@ -49,7 +49,7 @@ export const setProvince = (province) => (dispatch) => {
 export const setYear = (year) => (dispatch) => {
     dispatch({
         type: 'YEAR_CHANGED',
-        year: year
+        year
     });
 };
 

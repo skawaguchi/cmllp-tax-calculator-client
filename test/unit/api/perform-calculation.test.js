@@ -28,7 +28,6 @@ test('should make the service call', (t) => {
     t.is(stubArg, expectedURL);
 });
 
-
 test('should make the service call with no parameters if no payload is defined', (t) => {
 
     const fakePayload = null;

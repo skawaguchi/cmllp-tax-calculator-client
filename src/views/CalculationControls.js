@@ -14,9 +14,6 @@ import {
 } from '../actions/action-creators';
 import Inputs from '../state/types/inputs';
 import {getProvinceList} from '../factories/province-list';
-import {processLocation, getProvince} from '../services/ip-location';
-
-const canadaCountryCode = 'CA';
 
 function inputChanged(dispatch, id, value) {
     dispatch(changeInput(id, value));

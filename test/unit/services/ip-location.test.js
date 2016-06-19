@@ -47,7 +47,7 @@ test('should provide a promise for the location call', (t) => {
     t.true(returnValue instanceof Promise);
 });
 
-test('should return the json promise when the promise resolves', async (t) => {
+test('should return the json promise when the promise resolves', async function (t) {
 
     const fakeResponse = {
         json: sandbox.spy(),
@@ -55,7 +55,7 @@ test('should return the json promise when the promise resolves', async (t) => {
     };
 
     fetchStub.returns(Promise.resolve(fakeResponse));
-    
+
     t.is(fakeResponse.json.callCount, 0);
 
     await getProvince();
