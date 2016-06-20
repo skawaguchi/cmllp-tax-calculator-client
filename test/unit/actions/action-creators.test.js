@@ -94,7 +94,7 @@ test.serial('should get the calculations', async function (t) {
     });
 });
 
-test.serial('should throw an error when the calculations fail', async function (t) {
+test.serial('should throw an error when performing the calculations fail', async function (t) {
     const fakeDispatch = () => {};
     const fakeState = {};
     const fakeGetState = () => fakeState;

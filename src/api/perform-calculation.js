@@ -3,7 +3,7 @@ import {fetch as fetchCall} from '../services/fetch';
 
 const serviceURL = 'https://cmllp-tax-calculator-api.herokuapp.com'; // This will be made dynamic later
 
-export function performCalculation(payload = {province: 'on'}) {
+export function performCalculation(payload) {
 
     const params = payload ? `?${queryString.stringify(payload)}` : '';
     const resourceURL = `${serviceURL}/calculations${params}`;

@@ -9,16 +9,8 @@ export function configureStore(reducer) {
         DevTools.instrument()
     );
 
-    const store = createStore(
+    return createStore(
         reducer,
         enhancer
     );
-
-    if (module.hot) {
-        module.hot.accept('../reducers', () =>
-            store.replaceReducer(require('../reducers')/* .default if you use Babel 6+ */)
-        );
-    }
-
-    return store;
 }

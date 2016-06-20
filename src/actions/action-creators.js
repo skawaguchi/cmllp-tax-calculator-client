@@ -23,9 +23,6 @@ export const getCalculations = () => async function (dispatch, getState) {
                             calculations,
                             type: 'CALCULATION_LOADED'
                         });
-                    })
-                    .catch((error) => {
-                        throw error;
                     });
             } else {
                 throw new Error('Calculation request failed.');
